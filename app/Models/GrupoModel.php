@@ -4,23 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Usuario extends Model
+class GrupoModel extends Model
 {
-    protected $table            = 'Usuario';
-    protected $primaryKey       = 'id_usuario';
-    protected $useAutoIncrement = true;
+    protected $table            = 'Grupo';
+    protected $primaryKey       = 'id_grupo';
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
+
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'nome_usuario',
-        'email_usuario',
-        'senha_usuario',
-        'cargo_usuario',
-        'id_grupo',
-        'is_ceo',
-        'is_admin',
-        'is_leader'
+        'nome_do_grupo',
+        'id_departamento'
     ];
 
     protected bool $allowEmptyInserts = false;
@@ -52,8 +46,9 @@ class Usuario extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-    public function getUserByEmail($email) {
-        return $this->where('email_usuario', $email)->first();
+
+    public function list(){
+        return $this->findAll();
     }
     public function create(array $attributes){
         return $this->insert($attributes);

@@ -1,6 +1,8 @@
+use pi_poo_secritia;
+-- Active: 1714930429643@@127.0.0.1@3306@pi_poo_secritia
 CREATE TABLE Departamento (
     id_departamento  VARCHAR(36) DEFAULT (UUID()) PRIMARY KEY,
-    nome_departamento TEXT,
+    nome_departamento TEXT
 );
 CREATE TABLE Grupo (
     id_grupo  VARCHAR(36) DEFAULT (UUID()) PRIMARY KEY,
@@ -20,7 +22,7 @@ CREATE TABLE Usuario (
     created_at DATETIME,
     updated_at DATETIME,
     deleted_at DATETIME,
-    id_grupo VARCHAR(36)
+    id_grupo VARCHAR(36),
     Foreign Key (id_grupo) REFERENCES Grupo(id_grupo)
 );
 
@@ -60,7 +62,7 @@ CREATE TABLE Forum (
 CREATE TABLE Mensagens (
     id_mensagens  VARCHAR(36) DEFAULT (UUID()) PRIMARY KEY,
     id_forum VARCHAR(36),
-    criado DATE,
+    criado DATETIME,
     id_usuario VARCHAR(36),
     corpo TEXT,
     FOREIGN KEY (id_forum) REFERENCES Forum(id_forum),

@@ -23,7 +23,7 @@ class ComentarioController extends ResourceController
                 'id_publicacao'=> $this->request->getPost('id_publicacao'),
                 'corpo'=> $this->request->getPost('corpo'),
                 'id_usuario'=> $this->request->getPost('id_usuario'),
-                'criado'=> date('Y-m-d')
+                'created_at'=> date('Y-m-d h:i:s')
             ];
             $this->comentarioModel->create($newComentario);
             $response= [

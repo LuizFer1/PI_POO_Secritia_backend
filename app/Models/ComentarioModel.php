@@ -9,7 +9,7 @@ class ComentarioModel extends Model
     protected $table            = 'Comentario';
     protected $primaryKey       = 'id_comentario';
     protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
+    protected $useSoftDeletes   = true;
     protected $protectFields    = true;
     protected $allowedFields    = ['id_publicacao', 'corpo', 'id_usuario', 'criado'];
 

@@ -61,4 +61,14 @@ class UsuarioModel extends Model
     public function create(array $attributes){
         return $this->insert($attributes);
     }
+    public function checkCredentials($email, $password)
+    {
+        $user = $this->where('email_usuario', $email)->first();
+
+        if ($user && password_verify($password, $user['senha_usuario'])) {
+            return $user;
+        }
+
+        return null;
+    }
 }

@@ -11,6 +11,7 @@ use App\Models\UsuarioModel;
 class UsuarioController extends ResourceController
 {
     private $usuario;
+    protected $format = 'json';
 
     public function __construct()
     {
@@ -69,6 +70,6 @@ class UsuarioController extends ResourceController
     public function listUsers()
     {
         $users = $this->usuario->list();
-        return json_encode( $users );
+        echo json_encode( $users );
     }
 }

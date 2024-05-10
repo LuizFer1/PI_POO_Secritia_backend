@@ -8,7 +8,6 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class TokenFilter implements FilterInterface
 {
-    private $token = 'secritia147963';
     /**
      * Do whatever processing this filter needs to do.
      * By default it should not return anything during
@@ -27,7 +26,7 @@ class TokenFilter implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $headerToken = $request->getHeaderLine('token');
-        if ($headerToken == $this->token) {
+        if ($headerToken == getenv('api.token')) {
             return ;
         }else{
             throw new \Exception('Token Invalido!');

@@ -8,7 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 /*
     Rotas relacionadas a Usuarios
 */ 
-$routes->get('usuarios', 'UsuarioController::index');
+$routes->get('usuarios', 'UsuarioController::listUsers');
 $routes->post('add-pessoa','UsuarioController::createUser');
 
 $routes->get('departamentos','DepartamentoController::list');

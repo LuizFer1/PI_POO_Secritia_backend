@@ -4,10 +4,6 @@ namespace App\Controllers;
 
 
 use CodeIgniter\RESTful\ResourceController;
-<<<<<<< HEAD
-=======
-
->>>>>>> 39747a5ead199a3730ab985a7c7e9d35aec76996
 use App\Models\UsuarioModel;
 
 
@@ -19,10 +15,7 @@ class UsuarioController extends ResourceController
     {
         $this->usuario = new UsuarioModel();
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 39747a5ead199a3730ab985a7c7e9d35aec76996
     private function _verificarUsuario($email){
         // checa se o email ja está em uso
         $usuario = $this->usuario->getUserByEmail($email);
@@ -31,7 +24,6 @@ class UsuarioController extends ResourceController
     }else{
         return false;
     }}
-<<<<<<< HEAD
     /**
      * createUser
      * 
@@ -39,8 +31,6 @@ class UsuarioController extends ResourceController
      * 
      * @return json
      */
-=======
->>>>>>> 39747a5ead199a3730ab985a7c7e9d35aec76996
     public function createUser(){
         $response = [];
 
@@ -50,8 +40,7 @@ class UsuarioController extends ResourceController
         if($verify){
             try{
                 $newUser = [
-                    'nome_usuario' => $this->request->getPost('nome'),
-<<<<<<< HEAD
+                   'nome_usuario' => $this->request->getPost('nome'),
                     'email_usuario' => $this->request->getPost('email'),
                     'senha_usuario' => $this->request->getPost('senha'),
                     'cargo_usuario' => empty($this->request->getPost('cargo')) ? null : $this->request->getPost('cargo'),
@@ -59,15 +48,6 @@ class UsuarioController extends ResourceController
                     'is_admin' => empty($this->request->getPost('is_admin')) ? 0 : $this->request->getPost('is_admin'),
                     'is_leader'=> empty($this->request->getPost('is_leader')) ? 0 : $this->request->getPost('is_leader'),
                     'is_ceo'=> empty($this->request->getPost('is_ceo')) ? 0 : $this->request->getPost('is_leader')
-=======
-                    'email_usuario' => (string) $this->request->getPost('email'),
-                    'senha_usuario' => $this->request->getPost('senha'),
-                    'cargo_usuario' => $this->request->getPost('cargo'),
-                    'id_grupo' => $this->request->getPost('grupo'),
-                    'is_admin' => $this->request->getPost('is_admin'),
-                    'is_leader'=> $this->request->getPost('is_leader'),
-                    'is_ceo'=> $this->request->getPost('is_ceo')
->>>>>>> 39747a5ead199a3730ab985a7c7e9d35aec76996
                 ];
 
                 $user_criado = $this->usuario->create($newUser);
@@ -91,7 +71,6 @@ class UsuarioController extends ResourceController
                 'message'=> 'Usuario com email ja existe!'
             ];
         }
-<<<<<<< HEAD
         echo json_encode($response);
         exit;
     }
@@ -107,13 +86,11 @@ class UsuarioController extends ResourceController
         $users = $this->usuario->list();
         echo json_encode( $users );
         exit;
-=======
         return json_encode($response);
     }
     public function listUsers()
     {
         $users = $this->usuario->list();
         return json_encode( $users );
->>>>>>> 39747a5ead199a3730ab985a7c7e9d35aec76996
     }
 }

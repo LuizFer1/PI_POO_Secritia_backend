@@ -27,18 +27,24 @@ class Database extends Config
     public array $default = [
         'DSN'          => '',
 <<<<<<< HEAD
+<<<<<<< HEAD
         'hostname'     => 'localhost',
         'username'     => '',
         'password'     => '',
         'database'     => '',
         'DBDriver'     => 'MySQLi',
 =======
+=======
+>>>>>>> e8c52d58f5613f850e338c7fb6f7b8214dbf1db0
         'hostname'     => '127.0.01',
         'username'     => 'root',
         'password'     => '',
         'database'     => 'crud_simples',
         'DBDriver'     => 'mysqli',
+<<<<<<< HEAD
 >>>>>>> 39747a5ead199a3730ab985a7c7e9d35aec76996
+=======
+>>>>>>> e8c52d58f5613f850e338c7fb6f7b8214dbf1db0
         'DBPrefix'     => '',
         'pConnect'     => false,
         'DBDebug'      => true,

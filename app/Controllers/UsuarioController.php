@@ -10,12 +10,12 @@ use App\Models\UsuarioModel;
 class UsuarioController extends ResourceController
 {
     private $usuario;
+    protected $format = 'json';
 
     public function __construct()
     {
         $this->usuario = new UsuarioModel();
     }
-
     private function _verificarUsuario($email){
         // checa se o email ja está em uso
         $usuario = $this->usuario->getUserByEmail($email);
@@ -24,6 +24,7 @@ class UsuarioController extends ResourceController
     }else{
         return false;
     }}
+
     /**
      * createUser
      * 
@@ -71,6 +72,7 @@ class UsuarioController extends ResourceController
                 'message'=> 'Usuario com email ja existe!'
             ];
         }
+
         echo json_encode($response);
         exit;
     }
@@ -84,13 +86,14 @@ class UsuarioController extends ResourceController
     public function listUsers()
     {
         $users = $this->usuario->list();
-        echo json_encode( $users );
-        exit;
         return json_encode($response);
     }
     public function listUsers()
     {
         $users = $this->usuario->list();
+
         return json_encode( $users );
+        return $this->respond($users);
+
     }
 }

@@ -20,3 +20,6 @@ $routes->group('User', function (RouteCollection $routes) {
     );
 });
 
+$routes->get('publicacao', 'PublicacaoController::list');
+
+$routes->get('comentario', 'ComentarioController::list');

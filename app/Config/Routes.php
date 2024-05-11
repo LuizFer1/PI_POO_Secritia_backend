@@ -20,3 +20,4 @@ $routes->post('add-grupo','GrupoController::createGroup');
 $routes->get('publicacao', 'PublicacaoController::list');
 
 $routes->get('comentario', 'ComentarioController::list');
+$routes->get('reacao', 'ReacaoController::list');

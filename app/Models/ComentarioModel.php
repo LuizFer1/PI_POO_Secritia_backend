@@ -46,6 +46,9 @@ class ComentarioModel extends Model
     public function list(){
         return $this->findAll();
     }
+    public function getComentarioByCorpo($corpo) {
+        return $this->where('corpo', $corpo)->first();
+    }
     public function create(array $attributes){
         return $this->insert($attributes);
     }

@@ -9,12 +9,14 @@ use App\Models\PublicacaoModel;
 class PublicacaoController extends ResourceController
 {
     private $publicacaoModel;
+    protected $format = 'json';
+
     public function __construct(){
         $this->publicacaoModel = new PublicacaoModel();
     }
     public function list(){
         $publicacoes = $this->publicacaoModel->list();
-        return json_encode($publicacoes);
+        return $this->respond($publicacoes);
     }
     public function createPublicacao(){
         $response =[];
@@ -25,18 +27,23 @@ class PublicacaoController extends ResourceController
                 'descricao'=> $this->request->getPost('descricao'),
                 'conteudo'=> $this->request->getPost('conteudo')
             ];
-            $this->publicacaoModel->create($newPublicacao);
-            $response= [
-                'status'=> 'success',
-                'message'=> 'Publicacao Criada com sucesso!'
-            ];
+            $publicacao_criada = $this->publicacaoModel->create($newPublicacao);
+
+            if($publicacao_criada == 0){
+                $response= [
+                    'status'=> 'success',
+                    'message'=> 'Publicacao Criada com sucesso!'
+                ];
+            }
         }catch(\Exception $e){
             $response =[
                 'status'=> 'error',
-                'message'=> $e->getMessage()
+                'message'=> 'A publicacao não foi criada, cheque os dados!',
+                'error' => $e->getMessage()
             ];
         }
-        return json_encode($response);
+        $publicacaoModel = $this->publicacaoModel->list();
+        return $this->respond($publicacaoModel);
     }
 }
 

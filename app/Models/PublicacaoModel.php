@@ -22,6 +22,9 @@ class PublicacaoModel extends Model
     // Dates
     protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
+    protected $deletedField  = 'deleted_at';
 
     // Validation
     protected $validationRules      = [];
@@ -42,6 +45,9 @@ class PublicacaoModel extends Model
 
     public function list(){
         return $this->findAll();
+    }
+    public function getPublicacaoByTitulo($titulo) {
+        return $this->where('titulo', $titulo)->first();
     }
     public function create(array $attributes){
         return $this->insert($attributes);

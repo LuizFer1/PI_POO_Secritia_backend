@@ -1,20 +1,22 @@
 <?php
+
 namespace App\Controllers;
 
 use CodeIgniter\RESTful\ResourceController;
 
 use App\Models\ComentarioModel;
 
-
 class ComentarioController extends ResourceController
 {
     private $comentarioModel;
+    protected $format = 'json';
+
     public function __construct(){
         $this->comentarioModel = new ComentarioModel();
     }
     public function list(){
         $comentarios = $this->comentarioModel->list();
-        return json_encode($comentarios);
+        return $this->respond($comentarios);
     }
     public function createComentario(){
         $response =[];
@@ -25,18 +27,23 @@ class ComentarioController extends ResourceController
                 'id_usuario'=> $this->request->getPost('id_usuario'),
                 'created_at'=> date('Y-m-d h:i:s')
             ];
-            $this->comentarioModel->create($newComentario);
-            $response= [
-                'status'=> 'success',
-                'message'=> 'Comentario Criado com sucesso!'
-            ];
+            $comentario_criado = $this->comentarioModel->create($newComentario);
+
+            if($comentario_criado == 0){
+                $response= [
+                    'status'=> 'success',
+                    'message'=> 'Comentario Criado com sucesso!'
+                ];
+            }
         }catch(\Exception $e){
             $response =[
                 'status'=> 'error',
-                'message'=> $e->getMessage()
+                'message'=> 'O comentario não foi criado, cheque os dados!',
+                'error' => $e->getMessage()
             ];
         }
-        return json_encode($response);
+        $comentarioModel = $this->comentarioModel->list();
+        return $this->respond($comentarioModel);
     }
 }
 

@@ -16,3 +16,7 @@ $routes->post('add-departamento','DepartamentoController::createDepartament');
 
 $routes->get('grupos','GrupoController::list');
 $routes->post('add-grupo','GrupoController::createGroup');
+
+$routes->get('publicacao', 'PublicacaoController::list');
+
+$routes->get('comentario', 'ComentarioController::list');

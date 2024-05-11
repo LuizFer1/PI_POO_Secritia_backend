@@ -17,7 +17,15 @@ $routes->post('add-departamento','DepartamentoController::createDepartament');
 $routes->get('grupos','GrupoController::list');
 $routes->post('add-grupo','GrupoController::createGroup');
 
-$routes->get('publicacao', 'PublicacaoController::list');
+$routes->get('publicacoes', 'PublicacaoController::list');
+$routes->post('publicacoes', 'PublicacaoController::createPublicacao');
 
-$routes->get('comentario', 'ComentarioController::list');
-$routes->get('reacao', 'ReacaoController::list');
+
+
+
+$routes->get('comentarios', 'ComentarioController::list');
+$routes->post('comentarios', 'ComentarioController::createComentario'); 
+
+
+$routes->get('reacoes', 'ReacaoController::list');
+$routes->post('reacoes', 'ReacaoController::createReacao');

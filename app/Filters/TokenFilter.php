@@ -8,10 +8,6 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class TokenFilter implements FilterInterface
 {
-<<<<<<< HEAD
-    private $token = 'secritia147963';
-=======
->>>>>>> e8c52d58f5613f850e338c7fb6f7b8214dbf1db0
     /**
      * Do whatever processing this filter needs to do.
      * By default it should not return anything during
@@ -30,11 +26,8 @@ class TokenFilter implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $headerToken = $request->getHeaderLine('token');
-<<<<<<< HEAD
-        if ($headerToken == $this->token) {
-=======
         if ($headerToken == getenv('api.token')) {
->>>>>>> e8c52d58f5613f850e338c7fb6f7b8214dbf1db0
+
             return ;
         }else{
             throw new \Exception('Token Invalido!');

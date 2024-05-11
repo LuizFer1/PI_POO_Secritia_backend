@@ -2,7 +2,10 @@
 
 namespace Config;
 
+<<<<<<< HEAD
 use App\Filters\TokenFilter;
+=======
+>>>>>>> 39747a5ead199a3730ab985a7c7e9d35aec76996
 use CodeIgniter\Config\Filters as BaseFilters;
 use CodeIgniter\Filters\Cors;
 use CodeIgniter\Filters\CSRF;
@@ -13,6 +16,10 @@ use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\PageCache;
 use CodeIgniter\Filters\PerformanceMetrics;
 use CodeIgniter\Filters\SecureHeaders;
+<<<<<<< HEAD
+=======
+use App\Filters\TokenFilter;
+>>>>>>> 39747a5ead199a3730ab985a7c7e9d35aec76996
 
 class Filters extends BaseFilters
 {
@@ -35,6 +42,10 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+<<<<<<< HEAD
+=======
+        'login' => Login::class,
+>>>>>>> 39747a5ead199a3730ab985a7c7e9d35aec76996
         'token' => TokenFilter::class,
     ];
 
@@ -55,7 +66,10 @@ class Filters extends BaseFilters
         'before' => [
             'forcehttps', // Force Global Secure Requests
             'pagecache',  // Web Page Caching
+<<<<<<< HEAD
 
+=======
+>>>>>>> 39747a5ead199a3730ab985a7c7e9d35aec76996
         ],
         'after' => [
             'pagecache',   // Web Page Caching
@@ -72,6 +86,10 @@ class Filters extends BaseFilters
      */
     public array $globals = [
         'before' => [
+<<<<<<< HEAD
+=======
+            'token',
+>>>>>>> 39747a5ead199a3730ab985a7c7e9d35aec76996
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',

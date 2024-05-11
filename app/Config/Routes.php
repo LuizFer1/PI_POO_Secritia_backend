@@ -20,13 +20,25 @@ $routes->group('User', function (RouteCollection $routes) {
     );
 });
 
-
-$routes->get('publicacao', 'PublicacaoController::list');
-
-$routes->get('comentario', 'ComentarioController::list');
+$routes->group('Publish', function (RouteCollection $routes) {
+    $routes->get(
+        'publicacao',
+        'PublicacaoController::list',
+        ['filter'=> 'token']
+    );
+});
+$routes->group('Comment', function (RouteCollection $routes){
+    $routes->get('comentario',
+    'ComentarioController::list',
+    ['filter' => 'token']
+);
+});
 
 $routes->get('grupos','GrupoController::list');
 $routes->post('add-grupo','GrupoController::createGroup');
+
+$routes->get('departamentos','DepartamentoController::list');
+$routes->post('add-grupo','DepartamentoController::createDepartament');
 
 $routes->get('login', 'Login::index');
 $routes->post('login/process', 'Login::process');

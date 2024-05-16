@@ -43,7 +43,7 @@ class UsuarioController extends ResourceController
                 $newUser = [
                    'nome_usuario' => $this->request->getPost('nome'),
                     'email_usuario' => $this->request->getPost('email'),
-                    'senha_usuario' => $this->request->getPost('senha'),
+                    'senha_usuario' => password_hash($this->request->getPost('senha'), PASSWORD_DEFAULT),
                     'cargo_usuario' => empty($this->request->getPost('cargo')) ? null : $this->request->getPost('cargo'),
                     'id_grupo' => empty($this->request->getPost('grupo')) ? null : $this->request->getPost('grupo') ,
                     'is_admin' => empty($this->request->getPost('is_admin')) ? 0 : $this->request->getPost('is_admin'),

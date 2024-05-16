@@ -7,39 +7,76 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
-$routes->group('User', function (RouteCollection $routes) {
+$routes->group('user', function (RouteCollection $routes) {
     $routes->get(
         'usuarios',
-        'UsuarioController::listUsers',
-        ['filter' => 'token']
+        'UsuarioController::listUsers'
     );
     $routes->post(
         'create-user',
-        'UsuarioController::createUser',
-        ['filter' => 'token']
+        'UsuarioController::createUser'
     );
 });
 
-$routes->group('Publish', function (RouteCollection $routes) {
+$routes->group('publish', function (RouteCollection $routes) {
     $routes->get(
         'publicacao',
-        'PublicacaoController::list',
-        ['filter'=> 'token']
+        'PublicacaoController::list'
+    );
+    $routes->post(
+        'publicacoes',
+        'PublicacaoController::createPublicacao'
     );
 });
-$routes->group('Comment', function (RouteCollection $routes){
-    $routes->get('comentario',
-    'ComentarioController::list',
-    ['filter' => 'token']
-);
+$routes->group('comment', function (RouteCollection $routes) {
+    $routes->get(
+        'comentario',
+        'ComentarioController::list'
+    );
+    $routes->post(
+        'comentarios',
+        'ComentarioController::createComentario'
+    );
+});
+$routes->group('reactions', function (RouteCollection $routes) {
+    $routes->get(
+        'reacoes',
+        'ReacaoController::list'
+    );
+    $routes->post(
+        'reacoes',
+        'ReacaoController::createReacao'
+    );
 });
 
-$routes->get('grupos','GrupoController::list');
-$routes->post('add-grupo','GrupoController::createGroup');
+$routes->group('group', function (RouteCollection $routes) {
+    $routes->get(
+        'grupos',
+        'GrupoController::list'
+    );
+    $routes->post(
+        'add-grupo',
+        'GrupoController::createGroup'
+    );
+});
 
-$routes->get('departamentos','DepartamentoController::list');
-$routes->post('add-grupo','DepartamentoController::createDepartament');
-
-$routes->get('login', 'Login::index');
-$routes->post('login/process', 'Login::process');
-
+$routes->group('departament', function (RouteCollection $routes) {
+    $routes->get(
+        'departamentos',
+        'DepartamentoController::list'
+    );
+    $routes->post(
+        'add-departamento',
+        'DepartamentoController::createDepartament'
+    );
+});
+$routes->group('login', function (RouteCollection $routes) {
+    $routes->get(
+        '/',
+        'Login::index'
+    );
+    $routes->post(
+        'process',
+        'Login::process'
+    );
+});

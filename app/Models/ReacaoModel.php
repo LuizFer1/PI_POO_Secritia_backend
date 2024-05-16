@@ -4,14 +4,14 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ComentarioModel extends Model
+class ReacaoModel extends Model
 {
-    protected $table            = 'Comentario';
-    protected $primaryKey       = 'id_comentario';
+    protected $table            = 'Reacao';
+    protected $primaryKey       = 'id_reacao';
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_publicacao', 'corpo', 'id_usuario', 'created_at'];
+    protected $allowedFields    = ['tipo', 'id_usuario', 'id_publicacao'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -21,9 +21,6 @@ class ComentarioModel extends Model
 
     protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
 
     protected $validationRules      = [];
     protected $validationMessages   = [];
@@ -43,8 +40,8 @@ class ComentarioModel extends Model
     public function list(){
         return $this->findAll();
     }
-    public function getComentarioByCorpo($corpo) {
-        return $this->where('corpo', $corpo)->first();
+    public function getReacaoByTipo($tipo) {
+        return $this->where('tipo', $tipo)->first();
     }
     public function create(array $attributes){
         return $this->insert($attributes);

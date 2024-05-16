@@ -6,12 +6,13 @@ use CodeIgniter\Model;
 
 class UsuarioModel extends Model
 {
-    protected $table            = 'Usuario';
-    protected $primaryKey       = 'id_usuario';
-    protected $returnType       = 'array';
-    protected $useSoftDeletes   = true;
-    protected $protectFields    = true;
-    protected $allowedFields    = [
+    protected $table = 'Usuario';
+    protected $primaryKey = 'id_usuario';
+    protected $returnType = 'array';
+    protected $useSoftDeletes = true;
+    protected $protectFields = true;
+    protected $allowedFields = [
+        'id',
         'nome_usuario',
         'email_usuario',
         'senha_usuario',
@@ -30,35 +31,38 @@ class UsuarioModel extends Model
 
     // Dates
     protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
+    protected $dateFormat = 'datetime';
+    protected $createdField = 'created_at';
+    protected $updatedField = 'updated_at';
+    protected $deletedField = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
+    protected $validationRules = [];
+    protected $validationMessages = [];
+    protected $skipValidation = false;
     protected $cleanValidationRules = true;
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    protected $beforeInsert = [];
+    protected $afterInsert = [];
+    protected $beforeUpdate = [];
+    protected $afterUpdate = [];
+    protected $beforeFind = [];
+    protected $afterFind = [];
+    protected $beforeDelete = [];
+    protected $afterDelete = [];
 
-    public function list(){
+    public function list()
+    {
         return $this->findAll();
     }
-    public function getUserByEmail($email) {
+    public function getUserByEmail($email)
+    {
         return $this->where('email_usuario', $email)->first();
     }
-    public function create(array $attributes){
+    public function create(array $attributes)
+    {
         return $this->insert($attributes);
     }
     public function checkCredentials($email, $password)
@@ -66,9 +70,26 @@ class UsuarioModel extends Model
         $user = $this->where('email_usuario', $email)->first();
 
         if ($user && password_verify($password, $user['senha_usuario'])) {
-            return $user;
+            return true;
         }
 
-        return null;
+        return false;
+    }
+
+    public function login($email, $password)
+    {
+        $checked = $this->checkCredentials($email, $password);
+        if ($checked) {
+            $user = $this->where('email', $email)->first();
+            session()->set(
+                [
+                    'uuid' => $user['id'],
+                    'email' => $user['email_usuario'],
+                    'name' => $user['nome_usuario'],
+                ]
+            );
+            return true;
+        }
+        return false;
     }
 }

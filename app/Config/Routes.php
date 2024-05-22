@@ -5,7 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Home::index', ['as' => 'home']);
 
 $routes->group('user', function (RouteCollection $routes) {
     $routes->get(
@@ -15,6 +15,15 @@ $routes->group('user', function (RouteCollection $routes) {
     $routes->post(
         'create-user',
         'UsuarioController::createUser'
+    );
+    $routes->post( 
+        'create-lider',
+        'UsuarioController::createLeader',
+    );
+    $routes->post( 
+        'create-ceo',
+        'UsuarioController::createCeo',
+        ['filter' => 'isAdmin']
     );
 });
 
@@ -73,7 +82,8 @@ $routes->group('departament', function (RouteCollection $routes) {
 $routes->group('login', function (RouteCollection $routes) {
     $routes->get(
         '/',
-        'Login::index'
+        'Login::index',
+        ['as'=>'login']
     );
     $routes->post(
         'process',

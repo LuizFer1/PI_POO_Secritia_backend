@@ -8,7 +8,7 @@ class UsuarioModel extends Model
 {
     protected $table = 'Usuario';
     protected $primaryKey = 'id_usuario';
-    protected $returnType = 'array';
+    protected $returnType = 'object';
     protected $useSoftDeletes = true;
     protected $protectFields = true;
     protected $allowedFields = [
@@ -64,32 +64,5 @@ class UsuarioModel extends Model
     public function create(array $attributes)
     {
         return $this->insert($attributes);
-    }
-    public function checkCredentials($email, $password)
-    {
-        $user = $this->where('email_usuario', $email)->first();
-
-        if ($user && password_verify($password, $user['senha_usuario'])) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public function login($email, $password)
-    {
-        $checked = $this->checkCredentials($email, $password);
-        if ($checked) {
-            $user = $this->where('email', $email)->first();
-            session()->set(
-                [
-                    'uuid' => $user['id'],
-                    'email' => $user['email_usuario'],
-                    'name' => $user['nome_usuario'],
-                ]
-            );
-            return true;
-        }
-        return false;
     }
 }

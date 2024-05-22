@@ -25,7 +25,10 @@ class IsCeo implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        //
+        $user = session()->get("user");
+        if ($user->is_ceo == 0) {
+            throw new \Exception("User NOT is Ceo");
+        }
     }
 
     /**

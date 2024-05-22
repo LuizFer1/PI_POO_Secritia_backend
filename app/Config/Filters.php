@@ -39,6 +39,8 @@ class Filters extends BaseFilters
         'performance'   => PerformanceMetrics::class,
         'login' => Login::class,
         'token' => TokenFilter::class,
+        'isAdmin' => isAdmin::class,
+        'isCeo' => isCeo::class,
     ];
 
     /**
@@ -74,7 +76,6 @@ class Filters extends BaseFilters
      */
     public array $globals = [
         'before' => [
-            'token',
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',

@@ -27,6 +27,7 @@ class TokenFilter implements FilterInterface
     {
         $headerToken = $request->getHeaderLine('token');
         if ($headerToken == getenv('api.token')) {
+
             return ;
         }else{
             throw new \Exception('Token Invalido!');

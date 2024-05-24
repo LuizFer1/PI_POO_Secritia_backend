@@ -30,10 +30,6 @@ CREATE TABLE Publicacao (
     titulo VARCHAR(255),
     descricao VARCHAR(255),
     conteudo VARCHAR(255),
-    created_at DATETIME,
-    deleted_at DATETIME,
-    updated_at DATETIME,
-    
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );
 
@@ -42,7 +38,10 @@ CREATE TABLE Reacao (
     tipo CHAR(10),
     id_usuario VARCHAR(36),
     id_publicacao VARCHAR(36),
+<<<<<<< HEAD
     deleted_at DATETIME,
+=======
+>>>>>>> origin/main
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
     FOREIGN KEY (id_publicacao) REFERENCES Publicacao(id_publicacao)
 );

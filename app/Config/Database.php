@@ -29,7 +29,7 @@ class Database extends Config
         'hostname'     => '127.0.01',
         'username'     => 'root',
         'password'     => '',
-        'database'     => 'crud_simples',
+        'database'     => 'pi_poo_secritia',
         'DBDriver'     => 'mysqli',
         'DBPrefix'     => '',
         'pConnect'     => false,

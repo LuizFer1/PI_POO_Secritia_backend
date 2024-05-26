@@ -2,6 +2,8 @@
 
 namespace Config;
 
+
+use App\Filters\TokenFilter;
 use CodeIgniter\Config\Filters as BaseFilters;
 use CodeIgniter\Filters\Cors;
 use CodeIgniter\Filters\CSRF;
@@ -12,7 +14,7 @@ use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\PageCache;
 use CodeIgniter\Filters\PerformanceMetrics;
 use CodeIgniter\Filters\SecureHeaders;
-use App\Filters\TokenFilter;
+
 
 class Filters extends BaseFilters
 {
@@ -37,6 +39,8 @@ class Filters extends BaseFilters
         'performance'   => PerformanceMetrics::class,
         'login' => Login::class,
         'token' => TokenFilter::class,
+        'isAdmin' => isAdmin::class,
+        'isCeo' => isCeo::class,
     ];
 
     /**
@@ -72,7 +76,6 @@ class Filters extends BaseFilters
      */
     public array $globals = [
         'before' => [
-            'token',
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',

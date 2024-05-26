@@ -1936,6 +1936,7 @@
         },
         {
             "name": "symfony/deprecation-contracts",
+<<<<<<< HEAD
             "version": "v3.4.0",
             "source": {
                 "type": "git",
@@ -1946,6 +1947,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/7c3aff79d10325257a001fcf92d991f24fc967cf",
                 "reference": "7c3aff79d10325257a001fcf92d991f24fc967cf",
+=======
+            "version": "v3.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/deprecation-contracts.git",
+                "reference": "0e0d29ce1f20deffb4ab1b016a7257c4f1e789a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/0e0d29ce1f20deffb4ab1b016a7257c4f1e789a1",
+                "reference": "0e0d29ce1f20deffb4ab1b016a7257c4f1e789a1",
+>>>>>>> e8c52d58f5613f850e338c7fb6f7b8214dbf1db0
                 "shasum": ""
             },
             "require": {
@@ -1954,7 +1967,11 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
+<<<<<<< HEAD
                     "dev-main": "3.4-dev"
+=======
+                    "dev-main": "3.5-dev"
+>>>>>>> e8c52d58f5613f850e338c7fb6f7b8214dbf1db0
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -1983,7 +2000,11 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
+<<<<<<< HEAD
                 "source": "https://github.com/symfony/deprecation-contracts/tree/v3.4.0"
+=======
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.5.0"
+>>>>>>> e8c52d58f5613f850e338c7fb6f7b8214dbf1db0
             },
             "funding": [
                 {
@@ -1999,7 +2020,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2023-05-23T14:45:45+00:00"
+=======
+            "time": "2024-04-18T09:32:20+00:00"
+>>>>>>> e8c52d58f5613f850e338c7fb6f7b8214dbf1db0
         },
         {
             "name": "theseer/tokenizer",

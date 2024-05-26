@@ -16,3 +16,6 @@ $routes->post('add-departamento','DepartamentoController::createDepartament');
 
 $routes->get('grupos','GrupoController::list');
 $routes->post('add-grupo','GrupoController::createGroup');
+
+$routes->get('login', 'Login::index');
+$routes->post('login/process', 'Login::process');

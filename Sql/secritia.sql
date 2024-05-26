@@ -49,7 +49,9 @@ CREATE TABLE Comentario (
     id_publicacao VARCHAR(36),
     corpo TEXT,
     id_usuario VARCHAR(36),
-    criado DATE,
+    created_at DATETIME,
+    deleted_at DATETIME,
+    updated_at DATETIME,
     FOREIGN KEY (id_publicacao) REFERENCES Publicacao(id_publicacao),
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );

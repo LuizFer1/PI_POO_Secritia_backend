@@ -57,3 +57,16 @@ $routes->group('reactions', function (RouteCollection $routes) {
         'ReacaoController::createReacao'
     );
 });
+
+$routes->get('grupos','GrupoController::list');
+$routes->post('add-grupo','GrupoController::createGroup');
+
+$routes->get('departamentos','DepartamentoController::list');
+$routes->post('add-grupo','DepartamentoController::createDepartament');
+
+$routes->get('login', 'Login::index');
+
+
+
+
+

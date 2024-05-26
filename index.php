@@ -45,11 +45,9 @@ if (getcwd() . DIRECTORY_SEPARATOR !== FCPATH) {
 
 // LOAD OUR PATHS CONFIG FILE
 // This is the line that might need to be changed, depending on your folder structure.
-<<<<<<< HEAD
+
 require FCPATH . 'app/Config/Paths.php';
-=======
-require FCPATH . '/app/Config/Paths.php';
->>>>>>> e8c52d58f5613f850e338c7fb6f7b8214dbf1db0
+
 // ^^^ Change this line if you move your application folder
 
 $paths = new Config\Paths();
@@ -58,10 +56,3 @@ $paths = new Config\Paths();
 require $paths->systemDirectory . '/Boot.php';
 
 exit(CodeIgniter\Boot::bootWeb($paths));
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> e8c52d58f5613f850e338c7fb6f7b8214dbf1db0

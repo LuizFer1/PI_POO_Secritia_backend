@@ -43,12 +43,116 @@ class UsuarioController extends ResourceController
                 $newUser = [
                    'nome_usuario' => $this->request->getPost('nome'),
                     'email_usuario' => $this->request->getPost('email'),
-                    'senha_usuario' => $this->request->getPost('senha'),
+                    'senha_usuario' => password_hash($this->request->getPost('senha'), PASSWORD_DEFAULT),
                     'cargo_usuario' => empty($this->request->getPost('cargo')) ? null : $this->request->getPost('cargo'),
                     'id_grupo' => empty($this->request->getPost('grupo')) ? null : $this->request->getPost('grupo') ,
                     'is_admin' => empty($this->request->getPost('is_admin')) ? 0 : $this->request->getPost('is_admin'),
                     'is_leader'=> empty($this->request->getPost('is_leader')) ? 0 : $this->request->getPost('is_leader'),
                     'is_ceo'=> empty($this->request->getPost('is_ceo')) ? 0 : $this->request->getPost('is_leader')
+                ];
+
+                $user_criado = $this->usuario->create($newUser);
+
+                if($user_criado == 0){
+                    $response = [
+                        "status"=> "success",
+                        "message"=> "O usuario foi criado com sucesso!"
+                    ];
+                }
+            }catch(\Exception $e){
+                $response = [
+                    "status"=> "error",
+                    "message"=> "O usuario não foi criado, cheque os dados!",
+                    "error" => $e->getMessage()
+                ];
+            }
+        }else{
+            $response = [
+                "status"=> 'error',
+                'message'=> 'Usuario com email ja existe!'
+            ];
+        }
+
+        echo json_encode($response);
+        exit;
+    }
+     /**
+     * createUser
+     * 
+     * @method post
+     * 
+     * @return json
+     */
+    public function createLeader(){
+        $response = [];
+
+        $email = (string) $this->request->getPost("email");
+        $verify = $this->_verificarUsuario($email);
+        $data = date("Y-m-d H:i:s");
+        if($verify){
+            try{
+                $newUser = [
+                   'nome_usuario' => $this->request->getPost('nome'),
+                    'email_usuario' => $this->request->getPost('email'),
+                    'senha_usuario' => password_hash($this->request->getPost('senha'), PASSWORD_DEFAULT),
+                    'cargo_usuario' => empty($this->request->getPost('cargo')) ? null : $this->request->getPost('cargo'),
+                    'id_grupo' => empty($this->request->getPost('grupo')) ? null : $this->request->getPost('grupo') ,
+                    'is_admin' => empty($this->request->getPost('is_admin')) ? 0 : $this->request->getPost('is_admin'),
+                    'is_leader'=> empty($this->request->getPost('is_leader')) ? 1 : $this->request->getPost('is_leader'),
+                    'is_ceo'=> empty($this->request->getPost('is_ceo')) ? 0 : $this->request->getPost('is_leader'),
+                    'created_at' => $data
+                ];
+
+                $user_criado = $this->usuario->create($newUser);
+
+                if($user_criado == 0){
+                    $response = [
+                        "status"=> "success",
+                        "message"=> "O usuario foi criado com sucesso!"
+                    ];
+                }
+            }catch(\Exception $e){
+                $response = [
+                    "status"=> "error",
+                    "message"=> "O usuario não foi criado, cheque os dados!",
+                    "error" => $e->getMessage()
+                ];
+            }
+        }else{
+            $response = [
+                "status"=> 'error',
+                'message'=> 'Usuario com email ja existe!'
+            ];
+        }
+
+        echo json_encode($response);
+        exit;
+    }
+     /**
+     * createUser
+     * 
+     * @method post
+     * 
+     * @return json
+     */
+    public function createCeo(){
+        $response = [];
+
+        $email = (string) $this->request->getPost("email");
+        $verify = $this->_verificarUsuario($email);
+        $data = date("Y-m-d H:i:s");
+        if($verify){
+            try{
+                $newUser = [
+                   'nome_usuario' => $this->request->getPost('nome'),
+                    'email_usuario' => $this->request->getPost('email'),
+                    'senha_usuario' => password_hash($this->request->getPost('senha'), PASSWORD_DEFAULT),
+                    'cargo_usuario' => empty($this->request->getPost('cargo')) ? null : $this->request->getPost('cargo'),
+                    'id_grupo' => empty($this->request->getPost('grupo')) ? null : $this->request->getPost('grupo') ,
+                    'is_admin' => empty($this->request->getPost('is_admin')) ? 0 : $this->request->getPost('is_admin'),
+                    'is_leader'=> empty($this->request->getPost('is_leader')) ? 0 : $this->request->getPost('is_leader'),
+                    'is_ceo'=> empty($this->request->getPost('is_ceo')) ? 1 : $this->request->getPost('is_leader'),
+                    'created_at' => $data
                 ];
 
                 $user_criado = $this->usuario->create($newUser);

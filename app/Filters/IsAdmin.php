@@ -25,7 +25,11 @@ class IsAdmin implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        
+        $user = session()->get("user");
+        if ($user->is_admin == 0){
+            throw new \Exception("Usuario não é um admin!");
+            die();
+        }
     }
 
     /**

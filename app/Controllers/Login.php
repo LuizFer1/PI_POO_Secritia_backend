@@ -6,9 +6,8 @@ use CodeIgniter\Controller;
 
 class Login extends Controller
 {
-    public function index()
-    {
-        echo view('login_form');
+    public function index() {
+        return view('login');
     }
 
     public function process()

@@ -4,13 +4,13 @@ namespace App\Controllers;
 
 
 use CodeIgniter\RESTful\ResourceController;
-
 use App\Models\UsuarioModel;
 
 
 class UsuarioController extends ResourceController
 {
     private $usuario;
+    protected $format = 'json';
 
     public function __construct()
     {
@@ -24,6 +24,14 @@ class UsuarioController extends ResourceController
     }else{
         return false;
     }}
+
+    /**
+     * createUser
+     * 
+     * @method post
+     * 
+     * @return json
+     */
     public function createUser(){
         $response = [];
 
@@ -33,14 +41,14 @@ class UsuarioController extends ResourceController
         if($verify){
             try{
                 $newUser = [
-                    'nome_usuario' => $this->request->getPost('nome'),
-                    'email_usuario' => (string) $this->request->getPost('email'),
+                   'nome_usuario' => $this->request->getPost('nome'),
+                    'email_usuario' => $this->request->getPost('email'),
                     'senha_usuario' => $this->request->getPost('senha'),
-                    'cargo_usuario' => $this->request->getPost('cargo'),
-                    'id_grupo' => $this->request->getPost('grupo'),
-                    'is_admin' => $this->request->getPost('is_admin'),
-                    'is_leader'=> $this->request->getPost('is_leader'),
-                    'is_ceo'=> $this->request->getPost('is_ceo')
+                    'cargo_usuario' => empty($this->request->getPost('cargo')) ? null : $this->request->getPost('cargo'),
+                    'id_grupo' => empty($this->request->getPost('grupo')) ? null : $this->request->getPost('grupo') ,
+                    'is_admin' => empty($this->request->getPost('is_admin')) ? 0 : $this->request->getPost('is_admin'),
+                    'is_leader'=> empty($this->request->getPost('is_leader')) ? 0 : $this->request->getPost('is_leader'),
+                    'is_ceo'=> empty($this->request->getPost('is_ceo')) ? 0 : $this->request->getPost('is_leader')
                 ];
 
                 $user_criado = $this->usuario->create($newUser);
@@ -64,11 +72,20 @@ class UsuarioController extends ResourceController
                 'message'=> 'Usuario com email ja existe!'
             ];
         }
-        return json_encode($response);
+
+        echo json_encode($response);
+        exit;
     }
+    /**
+     * createUser
+     * 
+     * @method post
+     * 
+     * @return json
+     */
     public function listUsers()
     {
         $users = $this->usuario->list();
-        return json_encode( $users );
+        return json_encode($users);
     }
 }

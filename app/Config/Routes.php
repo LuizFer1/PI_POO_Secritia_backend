@@ -57,36 +57,3 @@ $routes->group('reactions', function (RouteCollection $routes) {
         'ReacaoController::createReacao'
     );
 });
-
-$routes->group('group', function (RouteCollection $routes) {
-    $routes->get(
-        'grupos',
-        'GrupoController::list'
-    );
-    $routes->post(
-        'add-grupo',
-        'GrupoController::createGroup'
-    );
-});
-
-$routes->group('departament', function (RouteCollection $routes) {
-    $routes->get(
-        'departamentos',
-        'DepartamentoController::list'
-    );
-    $routes->post(
-        'add-departamento',
-        'DepartamentoController::createDepartament'
-    );
-});
-$routes->group('login', function (RouteCollection $routes) {
-    $routes->get(
-        '/',
-        'Login::index',
-        ['as'=>'login']
-    );
-    $routes->post(
-        'process',
-        'Login::process'
-    );
-});

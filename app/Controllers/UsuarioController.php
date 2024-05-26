@@ -32,6 +32,14 @@ class UsuarioController extends ResourceController
      * 
      * @return json
      */
+
+    /**
+     * createUser
+     * 
+     * @method post
+     * 
+     * @return json
+     */
     public function createUser(){
         $response = [];
 
@@ -179,7 +187,17 @@ class UsuarioController extends ResourceController
 
         echo json_encode($response);
         exit;
+
+        echo json_encode($response);
+        exit;
     }
+    /**
+     * createUser
+     * 
+     * @method post
+     * 
+     * @return json
+     */
     /**
      * createUser
      * 

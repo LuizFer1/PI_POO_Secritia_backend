@@ -38,6 +38,7 @@ CREATE TABLE Reacao (
     tipo CHAR(10),
     id_usuario VARCHAR(36),
     id_publicacao VARCHAR(36),
+    deleted_at DATETIME,
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
     FOREIGN KEY (id_publicacao) REFERENCES Publicacao(id_publicacao)
 );

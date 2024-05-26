@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 use pi_poo_secritia;
 -- Active: 1714930429643@@127.0.0.1@3306@pi_poo_secritia
+=======
+>>>>>>> e45f087629f29552a020d756b4d8a4875575258e
 CREATE TABLE Departamento (
     id_departamento  VARCHAR(36) DEFAULT (UUID()) PRIMARY KEY,
     nome_departamento TEXT
@@ -64,7 +67,11 @@ CREATE TABLE Forum (
 CREATE TABLE Mensagens (
     id_mensagens  VARCHAR(36) DEFAULT (UUID()) PRIMARY KEY,
     id_forum VARCHAR(36),
+<<<<<<< HEAD
     criado DATETIME,
+=======
+    criado DATE,
+>>>>>>> e45f087629f29552a020d756b4d8a4875575258e
     id_usuario VARCHAR(36),
     corpo TEXT,
     FOREIGN KEY (id_forum) REFERENCES Forum(id_forum),

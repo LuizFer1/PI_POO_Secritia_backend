@@ -9,18 +9,30 @@ $routes->get('/', 'Home::index', ['as' => 'home']);
 
 $routes->group('user', function (RouteCollection $routes) {
     $routes->get(
+        'login',
+        'Login::index'
+    );
+    $routes->post(
+        'process',
+        'Login::process'
+    );
+    $routes->get(
         'usuarios',
         'UsuarioController::listUsers'
+    );
+    $routes->get(
+        'registro',
+        'UsuarioController::index'
     );
     $routes->post(
         'create-user',
         'UsuarioController::createUser'
     );
-    $routes->post( 
+    $routes->post(
         'create-lider',
         'UsuarioController::createLeader',
     );
-    $routes->post( 
+    $routes->post(
         'create-ceo',
         'UsuarioController::createCeo',
         ['filter' => 'isAdmin']
@@ -58,13 +70,13 @@ $routes->group('reactions', function (RouteCollection $routes) {
     );
 });
 
-$routes->get('grupos','GrupoController::list');
-$routes->post('add-grupo','GrupoController::createGroup');
+$routes->get('grupos', 'GrupoController::list');
+$routes->post('add-grupo', 'GrupoController::createGroup');
 
-$routes->get('departamentos','DepartamentoController::list');
-$routes->post('add-grupo','DepartamentoController::createDepartament');
+$routes->get('departamentos', 'DepartamentoController::list');
+$routes->post('add-grupo', 'DepartamentoController::createDepartament');
 
-$routes->get('login', 'Login::index');
+
 
 
 

@@ -1,0 +1,317 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+b,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font-family: "Poppins", sans-serif;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Zerando css */
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: rgb(255 255 255 / 5%);
+    border-bottom: solid 2px;
+    border-color: #9747FF;
+}
+
+header div span a {
+    color: gray;
+}
+
+header div span a :hover {
+    color: #9747FF;
+}
+
+header .logo {
+    font-weight: 600;
+}
+
+header .menu-lateral,
+.menu-central {
+    color: hsla(0, 11%, 51%, 0.5);
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.menu-tela-grande {
+    display: flex;
+    gap: 20px;
+}
+
+header .menu-lateral .menu-mobile {
+    display: none;
+}
+
+main {
+    display: flex;
+    gap: 40px;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .post {
+    height: 400px;
+    width: 500px;
+    box-shadow: 0px 10px 7px -3px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+main .post .post-img {
+    display: flex;
+    height: 90%;
+    flex-direction: column;
+    justify-content: space-between;
+    background: azure;
+    border-bottom: solid 2px;
+    border-color: #9747FF;
+}
+
+main .post .post-img img {
+    height: 100%;
+}
+
+main .post .post-img span {
+    padding: 10px;
+    font-weight: 600;
+}
+
+main .post .post-actions {
+    background-color: rgb(255 255 255 / 2%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10%;
+
+}
+
+main .post .post-actions div {
+    display: flex;
+    gap: 30px;
+    padding: 10px 20px;
+}
+
+main .post .post-actions div span a {
+    color: gray;
+}
+
+main .post .post-actions div span :hover {
+    color: #9747FF;
+}
+
+
+@media (max-width :537px) {
+    header {
+        display: flex;
+        align-items: center;
+        height: 60px;
+        padding: 10px;
+        margin-bottom: 20px;
+        background-color: rgb(255 255 255 / 5%);
+        border-bottom: solid 2px;
+        border-color: #9747FF;
+        justify-content: space-between;
+    }
+
+    header .menu-central {
+        color: hsla(0, 11%, 51%, 0.5);
+        display: flex;
+        gap: 20px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    header .menu-lateral .menu-tela-grande {
+        display: none;
+    }
+
+    header .menu-lateral .menu-mobile {
+        display: flex;
+    }
+
+    header .logo {
+        display: none;
+    }
+
+    main .post {
+        height: 300px;
+        width: 400px;
+        box-shadow: 0px 10px 7px -3px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .menu {
+        width: 250px;
+        position: absolute;
+        top: 0;
+        left: -250px;
+        height: 100%;
+        background-color: #333;
+        transition: 0.3s;
+        overflow-x: hidden;
+        padding: 50px 10px;
+    }
+
+    .menu a {
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #818181;
+        display: flex;
+        transition: 0.3s;
+        gap: 10px;
+        margin: 5px;
+        flex-direction: row;
+    }
+
+    .menu a:hover {
+        color: #f1f1f1;
+    }
+
+    .menu .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    #menuIcon {
+        cursor: pointer;
+    }
+}

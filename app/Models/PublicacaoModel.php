@@ -9,7 +9,7 @@ class PublicacaoModel extends Model
     protected $table            = 'Publicacao';
     protected $primaryKey       = 'id_publicacao';
     protected $returnType       = 'array';
-    protected $useSoftDeletes   = true;
+    protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = ['id_usuario', 'titulo', 'descricao', 'conteudo'];
 

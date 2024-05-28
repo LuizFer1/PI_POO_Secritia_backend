@@ -24,6 +24,9 @@ class UsuarioController extends ResourceController
     }else{
         return false;
     }}
+    public function index(){
+        return view('cadastro');
+    }
 
     /**
      * createUser
@@ -58,6 +61,11 @@ class UsuarioController extends ResourceController
                         "status"=> "success",
                         "message"=> "O usuario foi criado com sucesso!"
                     ];
+                    $userFound = $this->usuario->where('email_usuario', $this->request->getPost('email'))->first();
+                    unset( $userFound->senha_usuario );
+                    session()->set('user', $userFound );
+                    
+                    return redirect()->route('home');
                 }
             }catch(\Exception $e){
                 $response = [

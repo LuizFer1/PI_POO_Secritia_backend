@@ -11,8 +11,14 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="<?= base_url('public/assets/css/feed.css'); ?>" />
-  <title>Inicio</title>
+  <link rel="stylesheet" href="<?= base_url('public/assets/css/post.css'); ?>" />
+  <title>SECRITIA - Home</title>
 </head>
 
 <body>
@@ -99,11 +105,29 @@
       </div>
     </div>
   </header>
+  <div class="container_openmodal">
+      <button class="openModal bt_publicacao" onclick="openForm()">
+        Criar Nova Publicação
+      </button>
+      <?php if (session()->user->is_leader == 1): ?>
+        <button class="openModal bt_equipe">
+          Criar Nova Equipe
+        </button>
+      <?php else: ?>
+      <?php endif; ?>
+      <?php if (session()->user->is_ceo == 1): ?>
+        <button class="openModal bt_departamento">
+          Criar Novo Departamento
+        </button>
+      <?php else: ?>
+      <?php endif; ?>
+    </div>
   <main>
-    <div class="post">
+        <?php foreach ($publicacoes as $publicacao): ?>
+      <div class="post">
       <div class="post-img">
-        <img src="" alt="" />
-        <span>Titulo da Publicação</span>
+        <img src="data:image/png;base64, <?= $publicacao['conteudo'] ?>" alt="" />
+        <span class="titulo_pub"><?= $publicacao['titulo'] ?></span>
       </div>
       <div class="post-actions">
         <div>
@@ -127,7 +151,30 @@
         </div>
       </div>
     </div>
+        <?php endforeach; ?>
+
   </main>
+  <div id="modal-publicacao" style="display: none;" class="container" >
+    <form action="<?= base_url('publish/create') ?>" method="post" enctype="multipart/form-data">
+      <div>
+        <label for="titulo">Titulo</label>
+        <input name="titulo" type="text" style="width:100%;">
+      </div>
+      <div class="top-div">
+        <h2>Inserir novo post</h2>
+        <textarea name="texto" placeholder="Insira o texto do post aqui..."></textarea>
+      </div>
+      <div class="bottom-div">
+        <label for="input-file"><img src="img/paperclip-in-vertical-position_icon-icons.com_72966.svg"
+            alt="Adicionar Foto" class="photo-button">
+        </label>
+        <input type="file" class="input-file" id="input-file" name="input-file" style="display: block;">
+        <button>Publicar</button>
+      </div>
+    </form>
+  </div>
+
+
   <script>
     function openMenu() {
       document.getElementById("myMenu").style.left = "0";
@@ -135,6 +182,9 @@
 
     function closeMenu() {
       document.getElementById("myMenu").style.left = "-250px";
+    }
+    function openForm() {
+      document.querySelector('#modal-publicacao').style.display = "block";
     }
   </script>
 </body>

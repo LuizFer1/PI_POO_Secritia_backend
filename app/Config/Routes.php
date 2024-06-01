@@ -5,12 +5,20 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index', ['as' => 'home']);
+$routes->get(
+    '/',
+    'Home::index',
+    [
+        'as' => 'home',
+        'filter' => 'login'
+    ]
+);
 
 $routes->group('user', function (RouteCollection $routes) {
     $routes->get(
         'login',
-        'Login::index'
+        'Login::index',
+        ['as' => 'login']
     );
     $routes->post(
         'process',
@@ -45,7 +53,7 @@ $routes->group('publish', function (RouteCollection $routes) {
         'PublicacaoController::list'
     );
     $routes->post(
-        'publicacoes',
+        'create',
         'PublicacaoController::createPublicacao'
     );
 });
@@ -73,9 +81,20 @@ $routes->group('reactions', function (RouteCollection $routes) {
 $routes->get('grupos', 'GrupoController::list');
 $routes->post('add-grupo', 'GrupoController::createGroup');
 
-$routes->get('departamentos', 'DepartamentoController::list');
-$routes->post('add-grupo', 'DepartamentoController::createDepartament');
-
+$routes->group('departament', function (RouteCollection $routes) {
+    $routes->get(
+        'departamentos',
+        'DepartamentoController::list'
+    );
+    $routes->get(
+        'register-departament',
+        'DepartamentoController::index'
+    );
+    $routes->post(
+        'add-departament',
+        'DepartamentoController::createDepartament'
+    );
+});
 
 
 

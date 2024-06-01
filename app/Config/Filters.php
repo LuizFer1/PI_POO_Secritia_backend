@@ -4,6 +4,7 @@ namespace Config;
 
 
 use App\Filters\TokenFilter;
+use App\Filters\Login;
 use CodeIgniter\Config\Filters as BaseFilters;
 use CodeIgniter\Filters\Cors;
 use CodeIgniter\Filters\CSRF;

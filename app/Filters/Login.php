@@ -25,7 +25,10 @@ class Login implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        //
+        if (session()->has("user")){
+            return true;
+        }
+        return redirect('login');
     }
 
     /**

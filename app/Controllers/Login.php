@@ -7,9 +7,8 @@ use CodeIgniter\Controller;
 
 class Login extends Controller
 {
-    public function index()
-    {
-        echo view('login_form');
+    public function index() {
+        return view('login');
     }
 
     public function process()
@@ -32,7 +31,7 @@ class Login extends Controller
             return redirect()->route('login')->with('error','Email or password gt incorrect!');
         }
         unset( $userFound->senha_usuario );
-        session()->set('user', $userFound );
+        session()->set('user',  $userFound );
         
         return redirect()->route('home');
     }  

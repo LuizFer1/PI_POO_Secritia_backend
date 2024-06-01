@@ -16,16 +16,27 @@ class PublicacaoController extends ResourceController
     }
     public function list(){
         $publicacoes = $this->publicacaoModel->list();
-        return $this->respond($publicacoes);
+        $data = [];
+        foreach ($publicacoes as $publicacao){
+            array_push($data, $publicacao);
+        }
+        return $data;
     }
     public function createPublicacao(){
+        helper(['form', 'url']);
         $response =[];
         try{
+            $image = $this->request->getFile('input-file');
+            // Lê o conteúdo da imagem
+            $imageContent = file_get_contents($image->getTempName());
+
+            // Converte para base64
+            $base64Image = base64_encode($imageContent);
             $newPublicacao = [
-                'id_usuario'=> $this->request->getPost('id_usuario'),
+                'id_usuario'=> session()->id_usuario,
                 'titulo'=> $this->request->getPost('titulo'),
-                'descricao'=> $this->request->getPost('descricao'),
-                'conteudo'=> $this->request->getPost('conteudo')
+                'descricao'=> $this->request->getPost('texto'),
+                'conteudo'=> $base64Image,
             ];
             $publicacao_criada = $this->publicacaoModel->create($newPublicacao);
 
@@ -42,8 +53,6 @@ class PublicacaoController extends ResourceController
                 'error' => $e->getMessage()
             ];
         }
-        $publicacaoModel = $this->publicacaoModel->list();
-        return $this->respond($publicacaoModel);
     }
 }
 

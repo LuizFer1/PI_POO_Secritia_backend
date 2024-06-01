@@ -1,11 +1,17 @@
 <?php
 
 namespace App\Controllers;
+use App\Controllers\PublicacaoController;
 
 class Home extends BaseController
 {
     public function index(): string
     {
-        return view('welcome_message');
+        $data = [];
+        $publicacao = (new PublicacaoController())->list();
+        $data = [
+            "publicacoes"=> $publicacao
+        ];
+        return view('home', $data);
     }
 }

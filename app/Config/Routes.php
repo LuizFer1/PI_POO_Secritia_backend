@@ -25,10 +25,6 @@ $routes->group('user', function (RouteCollection $routes) {
         'Login::process'
     );
     $routes->get(
-        'usuarios',
-        'UsuarioController::listUsers'
-    );
-    $routes->get(
         'registro',
         'UsuarioController::index'
     );
@@ -39,6 +35,7 @@ $routes->group('user', function (RouteCollection $routes) {
     $routes->post(
         'create-lider',
         'UsuarioController::createLeader',
+        ['filter' => 'isAdmin']
     );
     $routes->post(
         'create-ceo',

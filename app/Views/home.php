@@ -116,9 +116,9 @@
       <?php else: ?>
       <?php endif; ?>
       <?php if (session()->user->is_ceo == 1): ?>
-        <button class="openModal bt_departamento">
+        <a  href="<?= base_url("departament/register-departament") ?>"  class="openModal bt_departamento">
           Criar Novo Departamento
-        </button>
+        </a>
       <?php else: ?>
       <?php endif; ?>
     </div>

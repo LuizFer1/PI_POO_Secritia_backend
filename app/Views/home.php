@@ -116,9 +116,9 @@
       <?php else: ?>
       <?php endif; ?>
       <?php if (session()->user->is_ceo == 1): ?>
-        <a  href="<?= base_url("departament/register-departament") ?>"  class="openModal bt_departamento">
-          Criar Novo Departamento
-        </a>
+        <button class="openModal bt_departamento" onclick="openMenuDepartamento()">
+          Criar Nova Departamento
+        </button>
       <?php else: ?>
       <?php endif; ?>
     </div>
@@ -158,7 +158,8 @@
   </main>
   <div id="modal-publicacao" style="display: none;" class="container" >
     <form action="<?= base_url('publish/create') ?>" method="post" enctype="multipart/form-data">
-      <div>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeMenuPub()"></button>
+    <div>
         <label for="titulo">Titulo</label>
         <input name="titulo" type="text" style="width:100%;">
       </div>
@@ -177,12 +178,12 @@
   </div>
 
   
-  <div class="w-75 modal-dialog modal-lg " id="criarDepartamentoModal" aria-labelledby="criarDepartamentoModalLabel" aria-hidden="true">
+  <div class="w-75 modal-dialog modal-lg " id="criarDepartamentoModal" style="display: none;" aria-labelledby="criarDepartamentoModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title fs-5" id="criarDepartamentoModalLabel">Criar Departamento</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeMenuDepartamento()"></button>
                 </div>
                 <div class="modal-body">
                     <form class="form-container form-roxo" action="<?= base_url('departament/add-departament') ?>"
@@ -207,8 +208,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn md-3 botao-submit">Criar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeMenuDepartamento()">Cancelar</button>
+                    <button type="submit" class="btn md-3 botao-submit" >Criar</button>
                 </div>
             </div>
         </div>
@@ -221,11 +222,17 @@
         </script>
 
   <script>
+    function closeMenuDepartamento(){
+      document.getElementById("criarDepartamentoModal").style.display = "none"
+    }
+    function closeMenuPub(){
+      document.querySelector("#modal-publicacao").style.display = "none"
+    }
     function openMenu() {
       document.getElementById("myMenu").style.left = "0";
     }
     function openMenuDepartamento() {
-      document.getElementById("criarDepartamentoModal").style.display = "none"
+      document.getElementById("criarDepartamentoModal").style.display = "block"
     }
     function closeMenu() {
       document.getElementById("myMenu").style.left = "-250px";

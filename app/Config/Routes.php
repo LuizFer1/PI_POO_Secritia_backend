@@ -35,12 +35,16 @@ $routes->group('user', function (RouteCollection $routes) {
     $routes->post(
         'create-lider',
         'UsuarioController::createLeader',
-        ['filter' => 'isAdmin']
+        ['filter' => 'isCeo']
     );
     $routes->post(
         'create-ceo',
         'UsuarioController::createCeo',
         ['filter' => 'isAdmin']
+    );
+    $routes->get(
+        'logout',
+        'Login::logout',
     );
 });
 

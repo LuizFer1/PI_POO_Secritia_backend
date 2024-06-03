@@ -34,5 +34,10 @@ class Login extends Controller
         session()->set('user',  $userFound );
         
         return redirect()->route('home');
-    }  
+    } 
+
+    public function logout(){
+        session()->destroy();
+        return redirect("login");
+    }
 }

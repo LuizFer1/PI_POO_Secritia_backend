@@ -131,11 +131,13 @@
       </div>
       <div class="post-actions">
         <div>
-          <span><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          <form action="<?= base_url("reactions/create") ?>" method="post">
+          <span><button  type="submit" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
                 <path
                   d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1" />
-              </svg></a></span>
+              </svg></button></span>
+        </form>
           <span><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-chat-right-text-fill" viewBox="0 0 16 16">
                 <path
@@ -174,12 +176,57 @@
     </form>
   </div>
 
+  
+  <div class="w-75 modal-dialog modal-lg " id="criarDepartamentoModal" aria-labelledby="criarDepartamentoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title fs-5" id="criarDepartamentoModalLabel">Criar Departamento</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-container form-roxo" action="<?= base_url('departament/add-departament') ?>"
+                        method="POST">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="nome" name="nome" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="sigla" class="form-label">Sigla</label>
+                            <input type="text" class="form-control" id="sigla" name="sigla" required>
+                        </div>
+                        <div>
+                            <label for="leader">Lider Do Departamento</label>
+                            <select name="leader" id="leader" class="form-control" multiple>
+                                <?php foreach ($leaders as $leader): ?>
+                                    <option value="<?= $leader->id_usuario?>"> <?= $leader->nome_usuario ?></option>
+                                <?php endforeach; ?>
+                            </select>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn md-3 botao-submit">Criar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
 
   <script>
     function openMenu() {
       document.getElementById("myMenu").style.left = "0";
     }
-
+    function openMenuDepartamento() {
+      document.getElementById("criarDepartamentoModal").style.display = "none"
+    }
     function closeMenu() {
       document.getElementById("myMenu").style.left = "-250px";
     }

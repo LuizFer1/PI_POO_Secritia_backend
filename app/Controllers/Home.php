@@ -9,8 +9,16 @@ class Home extends BaseController
     {
         $data = [];
         $publicacao = (new PublicacaoController())->list();
+        $users = (new UsuarioController())->listUsers();
+        $leaders = [];
+        foreach($users as $user){
+            if($user->is_leader == 1){
+                array_push($leaders, $user);
+            }
+        }
         $data = [
-            "publicacoes"=> $publicacao
+            "publicacoes"=> $publicacao,
+            "leaders"=> $leaders
         ];
         return view('home', $data);
     }

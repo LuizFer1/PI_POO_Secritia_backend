@@ -212,6 +212,6 @@ class UsuarioController extends ResourceController
     public function listUsers()
     {
         $users = $this->usuario->list();
-        return json_encode($users);
+        return $users;
     }
 }

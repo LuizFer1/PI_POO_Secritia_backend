@@ -17,7 +17,8 @@
 
 <body>
     <!-- Modal -->
-    <div class="w-100" id="criarDepartamentoModal" tabindex="-1" aria-labelledby="criarDepartamentoModalLabel"
+
+    <div class="w-75 modal-dialog modal-lg " id="criarDepartamentoModal" tabindex="-1" aria-labelledby="criarDepartamentoModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -40,7 +41,7 @@
                             <label for="leader">Lider Do Departamento</label>
                             <select name="leader" id="leader" class="form-control" multiple>
                                 <?php foreach ($leaders as $leader): ?>
-                                    <option value="<? $leader['id_usuario'] ?>"> <? $leader['nome_usuario'] ?></option>
+                                    <option value="<?= $leader->id_usuario?>"> <?= $leader->nome_usuario ?></option>
                                 <?php endforeach; ?>
                             </select>
 

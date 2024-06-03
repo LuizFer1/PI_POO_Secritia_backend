@@ -13,9 +13,9 @@ class DepartamentoController extends ResourceController
         $this->departamentoModel = new DepartamentoModel();
     }
     public function index(){
-        $leaders = (new UsuarioController())->getLeaders();
+
         $data = [
-            "leaders"=> $leaders
+
         ];
         return view("criar-departamento", $data);
     }

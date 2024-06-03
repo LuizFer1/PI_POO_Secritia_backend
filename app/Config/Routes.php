@@ -74,8 +74,8 @@ $routes->group('reactions', function (RouteCollection $routes) {
         'ReacaoController::list'
     );
     $routes->post(
-        'create',
-        'ReacaoController::createReacao'
+        'create/(:any)',
+        'ReacaoController::createReacao/$1'
     );
 });
 

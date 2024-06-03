@@ -18,13 +18,12 @@ class ReacaoController extends ResourceController
         $reacoes = $this->reacaoModel->list();
         return $this->respond($reacoes);
     }
-    public function createReacao(){
+    public function createReacao($id_publicacao){
         $response =[];
         try{
             $newReacao = [
-                'tipo'=> $this->request->getPost('tipo'),
-                'id_usuario'=> $this->request->getPost('id_usuario'),
-                'id_publicacao'=> $this->request->getPost('id_publicacao')
+                'id_usuario'=> session()->get("user")->id_usuario,
+                'id_publicacao'=> $id_publicacao
             ];
             $reacao_criada = $this->reacaoModel->create($newReacao);
 
@@ -42,7 +41,6 @@ class ReacaoController extends ResourceController
             ];
         }
         $reacaoModel = $this->reacaoModel->list();
-        return $this->respond($reacaoModel);
     }
 }
 

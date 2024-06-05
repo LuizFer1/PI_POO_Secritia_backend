@@ -77,6 +77,10 @@ $routes->group('reactions', function (RouteCollection $routes) {
         'create/(:any)',
         'ReacaoController::createReacao/$1'
     );
+    $routes->get(
+        'delete/(:any)',
+        'ReacaoController::deleteRecord/$1'
+    );
 });
 
 $routes->get('grupos', 'GrupoController::list');

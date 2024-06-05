@@ -10,7 +10,11 @@ class Home extends BaseController
         $data = [];
         $publicacao = (new PublicacaoController())->list();
         $users = (new UsuarioController())->listUsers();
+        $reactions = (new ReacaoController())->list();
         $leaders = [];
+        // var_dump($publicacao[0]['id_publicacao']);
+        // var_dump($reactions);
+        // die;
         foreach($users as $user){
             if($user->is_leader == 1){
                 array_push($leaders, $user);
@@ -18,7 +22,8 @@ class Home extends BaseController
         }
         $data = [
             "publicacoes"=> $publicacao,
-            "leaders"=> $leaders
+            "leaders"=> $leaders,
+            "reactions" => $reactions
         ];
         return view('home', $data);
     }

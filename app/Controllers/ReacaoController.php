@@ -9,14 +9,14 @@ use App\Models\ReacaoModel;
 class ReacaoController extends ResourceController
 {
     private $reacaoModel;
-    protected $format = 'json';
 
     public function __construct(){
         $this->reacaoModel = new ReacaoModel();
     }
     public function list(){
-        $reacoes = $this->reacaoModel->list();
-        return $this->respond($reacoes);
+        $user = session()->get("user")->id_usuario;
+        $reacoes = $this->reacaoModel->listUser($user);
+        return $reacoes;
     }
     public function createReacao($id_publicacao){
         $response =[];
@@ -40,7 +40,16 @@ class ReacaoController extends ResourceController
                 'error' => $e->getMessage()
             ];
         }
-        $reacaoModel = $this->reacaoModel->list();
+        return redirect('home');
+    }
+    
+    public function deleteRecord($id_publicacao){
+        $deleteReacao = [
+            'id_usuario'=> session()->get("user")->id_usuario,
+            'id_publicacao'=> $id_publicacao
+        ];
+        $deleted = $this->reacaoModel->deleteRecord($deleteReacao);
+        return redirect('home');
     }
 }
 

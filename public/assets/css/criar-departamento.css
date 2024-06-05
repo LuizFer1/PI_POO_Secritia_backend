@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
     box-sizing: border-box;
     font-family: Poppins, sans-serif;
@@ -51,4 +52,59 @@ label {
 .form-roxo {
     padding: 0 5%;
     box-sizing: border-box;
+=======
+* {
+    box-sizing: border-box;
+    font-family: Poppins, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+label {
+    color: white;
+}
+
+.caixa-central {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.botao-submit {
+    background-color: #7cac3c;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    height: 40px;
+    width: 50%;
+}
+
+.botao-submit:hover {
+    background-color: #6e9d34;
+    font-weight: 600;
+    color: #fff;
+}
+
+.modal-content {
+    background-color: #6e49cf;
+    border-radius: 4px;
+    padding: 2%;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+
+.modal-header,
+.modal-footer {
+    border: none;
+}
+
+.form-roxo {
+    padding: 0 5%;
+    box-sizing: border-box;
+>>>>>>> 6dccb55795a3ce86a1ffc5a53b4e03dd7ac8b3f5
 }

@@ -14,7 +14,13 @@ $routes->get(
     ]
 );
 
+
+
 $routes->group('user', function (RouteCollection $routes) {
+    $routes->get(
+        'perfil',
+        'ProfileController::index',
+    );
     $routes->get(
         'login',
         'Login::index',

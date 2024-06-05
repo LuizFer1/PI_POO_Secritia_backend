@@ -22,7 +22,6 @@
 </head>
 
 <body>
-
   <header>
     <div class="logo">
       <span>SECRITIA</span>
@@ -35,13 +34,8 @@
             <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z" />
           </svg></a>
       </span>
-      <span><a href="">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-            class="bi bi-chat-left-fill" viewBox="0 0 16 16">
-            <path
-              d="M2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
-          </svg></a></span>
-      <span><a href="">
+
+      <span><a href="<?= base_url('/calendario') ?>">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
             class="bi bi-calendar-event-fill" viewBox="0 0 16 16">
             <path
@@ -132,23 +126,14 @@
         </div>
         <div class="post-actions">
           <div>
-            <?php if (in_array($publicacao['id_publicacao'], array_column($reactions, 'id_publicacao'))): ?>
-              <form action=<?php echo base_url("reactions/delete/") . $publicacao['id_publicacao'] ?> method="delete">
-                <span><button type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                      height="16" fill="red" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
-                      <path
-                        d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1" />
-                    </svg></button></span>
-              </form>
-            <?php else: ?>
-            <form action=<?php echo base_url("reactions/create/") . $publicacao['id_publicacao'] ?> method="post">
+            <form id="reaction-form" action=<?php echo base_url("reactions/create/") . $publicacao['id_publicacao'] ?>
+              method="post">
               <span><button onclick="preventdefault()" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                     height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
                     <path
                       d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1" />
                   </svg></button></span>
             </form>
-            <?php endif; ?>
             <span><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                   class="bi bi-chat-right-text-fill" viewBox="0 0 16 16">
                   <path
@@ -164,11 +149,10 @@
           </div>
         </div>
       </div>
-
     <?php endforeach; ?>
 
   </main>
-  <div id="modal-publicacao" style="display: none;" class="container">
+  <div id="modal-publicacao" style="display: none;" class="container modais-flutuantes">
     <form action="<?= base_url('publish/create') ?>" method="post" enctype="multipart/form-data">
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
         onclick="closeMenuPub()"></button>
@@ -181,10 +165,11 @@
         <textarea name="texto" placeholder="Insira o texto do post aqui..."></textarea>
       </div>
       <div class="bottom-div">
-        <label for="input-file"><img src="img/paperclip-in-vertical-position_icon-icons.com_72966.svg"
+        <label for="input-file"><img
+            src=" <?= base_url('assets/img/paperclip-in-vertical-position_icon-icons.com_72966.svg') ?>"
             alt="Adicionar Foto" class="photo-button">
         </label>
-        <input type="file" class="input-file" id="input-file" name="input-file" style="display: block;">
+        <input type="file" class="input-file" id="input-file" name="input-file" style="display: none;">
         <button>Publicar</button>
       </div>
     </form>
@@ -240,25 +225,32 @@
     function closeMenuDepartamento() {
       document.getElementById("criarDepartamentoModal").style.display = "none"
     }
+
     function closeMenuPub() {
       document.querySelector("#modal-publicacao").style.display = "none"
     }
+
     function openMenu() {
       document.getElementById("myMenu").style.left = "0";
     }
+
     function openMenuDepartamento() {
       document.getElementById("criarDepartamentoModal").style.display = "block"
     }
+
     function closeMenu() {
       document.getElementById("myMenu").style.left = "-250px";
     }
+
     function openForm() {
       document.querySelector('#modal-publicacao').style.display = "block";
     }
+
     function preventdefault(e) {
       e.preventDefault()
     }
   </script>
+
 </body>
 
 

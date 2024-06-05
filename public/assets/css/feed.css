@@ -253,7 +253,6 @@ main .post .post-actions div span :hover {
     overflow: auto;
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
-
 }
 
 @media (max-width :537px) {

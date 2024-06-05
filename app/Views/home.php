@@ -122,6 +122,9 @@
         <button class="openModal bt_pessoaEquipe m-2" onclick="openMenuPessoaEquipe()">
             Mudar pessoa de equipe
         </button>
+        <button class="openModal bt_grupo_departamento m-2" onclick="openMenuGrupoDepartamento()">
+            Mudar departamento de um grupo
+        </button>
         <?php else: ?>
         <?php endif; ?>
     </div>
@@ -283,7 +286,7 @@
                         <div>
                             <label for="grupoPessoaRealocado" class="mb-2">Grupo a ser realocado</label>
                             <select name="grupoPessoaRealocado" id="grupoPessoaRealocado" class="form-control" multiple>
-
+                                <!-- Insira aqui o codigo php para mostrar as equipes/grupos disponiveis -->
                             </select>
                         </div>
                     </form>
@@ -291,6 +294,38 @@
                 <div class="modal-footer mt-2">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                         onclick="closeMenuPessoaEquipe()">Cancelar</button>
+                    <button type="submit" class="btn md-3 ms-2 btn-success botao-submit">Criar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modais-flutuantes" id="grupoDepartamentoModal" style="display: none;"
+        aria-labelledby="grupoDepartamentoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"
+                    onclick="closeMenuGrupoDepartamento()"></button>
+                <div class="modal-header">
+                    <h3 class="modal-title fs-5 mb-2" id="grupoDepartamentoModalLabel">Mudar grupo de departamento</h3>
+                </div>
+                <div class="modal-body">
+                    <form class="form-container form-roxo" action="<?= base_url('grupo/change-grupo') ?>" method="POST">
+                        <div class="mb-3">
+                            <label for="nomeGrupoDep" class="form-label">Nome do grupo a ser mudado</label>
+                            <input type="text" class="form-control" id="nomeGrupoDep" name="nomeGrupoDep" required>
+                        </div>
+                        <div>
+                            <label for="novoDepartamentoGrupo" class="mb-2">Novo departamento</label>
+                            <select name="novoDepartamentoGrupo" id="novoDepartamentoGrupo" class="form-control"
+                                multiple>
+                                <!-- Insira aqui o codigo php para listar os departamentos -->
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer mt-2">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        onclick="closeMenuGrupoDepartamento()">Cancelar</button>
                     <button type="submit" class="btn md-3 ms-2 btn-success botao-submit">Criar</button>
                 </div>
             </div>
@@ -307,6 +342,10 @@
     <script>
     function closeMenuDepartamento() {
         document.getElementById("criarDepartamentoModal").style.display = "none"
+    }
+
+    function closeMenuGrupoDepartamento() {
+        document.getElementById("grupoDepartamentoModal").style.display = "none"
     }
 
     function closeMenuPessoaEquipe() {
@@ -327,6 +366,10 @@
 
     function openMenuDepartamento() {
         document.getElementById("criarDepartamentoModal").style.display = "block"
+    }
+
+    function openMenuGrupoDepartamento() {
+        document.getElementById("grupoDepartamentoModal").style.display = "block"
     }
 
     function openMenuPessoaEquipe() {

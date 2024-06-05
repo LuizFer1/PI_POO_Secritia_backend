@@ -1,0 +1,58 @@
+:root {
+    --roxo: #6e49cf;
+}
+
+* {
+    color: var(--roxo);
+}
+
+.calendario {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 80%;
+    height: 100vh;
+    padding: 5%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.header-calendario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.semana {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.dia {
+    list-style: none;
+    width: 14.28%;
+    height: 4rem;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 2px solid var(--roxo);
+}
+
+.dias-da-semana {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.dia-semana {
+    list-style: none;
+    width: 14.28%;
+    height: 4rem;
+    padding: 10px;
+    text-align: center;
+}

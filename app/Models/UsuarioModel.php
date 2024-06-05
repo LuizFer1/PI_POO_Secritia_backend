@@ -57,10 +57,6 @@ class UsuarioModel extends Model
     {
         return $this->findAll();
     }
-    public function getLeaders(){
-        $leader = $this->where('isLeader', 1);
-        return $leader;
-    }
     public function getUserByEmail($email)
     {
         return $this->where('email_usuario', $email)->first();

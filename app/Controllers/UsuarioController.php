@@ -27,6 +27,10 @@ class UsuarioController extends ResourceController
     public function index(){
         return view('cadastro');
     }
+    public function getLeaders(){
+        $leaders = $this->usuario->getUsersLeaders();
+        return $leaders;
+    }
 
     /**
      * createUser
@@ -208,6 +212,6 @@ class UsuarioController extends ResourceController
     public function listUsers()
     {
         $users = $this->usuario->list();
-        return json_encode($users);
+        return $users;
     }
 }

@@ -11,13 +11,14 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../css/criar-departamento.css">
+    <link rel="stylesheet" href="<?= base_url("public/assets/css/criar-departamento.css") ?>">
     <title>Criar departamento</title>
 </head>
 
 <body>
     <!-- Modal -->
-    <div class="modal fade" id="criarDepartamentoModal" tabindex="-1" aria-labelledby="criarDepartamentoModalLabel"
+
+    <div class="w-75 modal-dialog modal-lg " id="criarDepartamentoModal" tabindex="-1" aria-labelledby="criarDepartamentoModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -26,7 +27,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="form-container form-roxo" action="<?= base_url('departament/add-departament') ?>" method="POST">
+                    <form class="form-container form-roxo" action="<?= base_url('departament/add-departament') ?>"
+                        method="POST">
                         <div class="mb-3">
                             <label for="nome" class="form-label">Nome</label>
                             <input type="text" class="form-control" id="nome" name="nome" required>
@@ -37,10 +39,12 @@
                         </div>
                         <div>
                             <label for="leader">Lider Do Departamento</label>
-                            <select name="leader" id="leader" class="form-control" multiple></select>
-                            <?php foreach (leaders as $leader) : ?>
-                                <option value="<?= $leader['id'] ?>"> <?= $leader['name'] ?></option>
-                            <?php endforeach; ?>
+                            <select name="leader" id="leader" class="form-control" multiple>
+                                <?php foreach ($leaders as $leader): ?>
+                                    <option value="<?= $leader->id_usuario?>"> <?= $leader->nome_usuario ?></option>
+                                <?php endforeach; ?>
+                            </select>
+
                         </div>
                     </form>
                 </div>
@@ -56,7 +60,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+        </script>
 </body>
 
 </html>

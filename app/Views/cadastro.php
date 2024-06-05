@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <title>Secritia - Cadastro</title>
-    <link href="<?= base_url('public/assets/css/global.css'); ?>" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url('public/assets/css/cadastro.css'); ?>">
+    <link href="<?= base_url('assets/css/global.css'); ?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url('assets/css/cadastro.css'); ?>">
 </head>
 
 <body>
@@ -22,19 +22,19 @@
                     <h3>FAÇA SEU CADASTRO</h3>
                     <div>
                         <label>
-                            <img src="<?= base_url('public/assets/img/perm_identity.svg'); ?>" alt="Icone de usuário">
+                            <img src="<?= base_url('assets/img/perm_identity.svg'); ?>" alt="Icone de usuário">
                         </label>
                         <input name="email" type="email" placeholder="Email Institucional">
                     </div>
                     <div>
                         <label>
-                            <img src="<?= base_url('public/assets/img/lock_outline.svg'); ?>" alt="Icone de usuário">
+                            <img src="<?= base_url('assets/img/lock_outline.svg'); ?>" alt="Icone de usuário">
                         </label>
                         <input name="senha" type="password" placeholder="Crie sua senha">
                     </div>
                     <div>
                         <label>
-                            <img src="<?= base_url('public/assets/img/lock_outline.svg'); ?>" alt="Icone de usuário">
+                            <img src="<?= base_url('assets/img/lock_outline.svg'); ?>" alt="Icone de usuário">
                         </label>
                         <input name="senha" type="password" placeholder="Repita sua senha">
                     </div>

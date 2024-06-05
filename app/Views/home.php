@@ -103,18 +103,21 @@
         </div>
     </header>
     <div class="container_openmodal">
-        <button class="openModal bt_publicacao" onclick="openForm()">
+        <button class="openModal bt_publicacao m-2" onclick="openForm()">
             Criar Nova Publicação
         </button>
         <?php if (session()->user->is_leader == 1): ?>
-        <button class="openModal bt_equipe">
+        <button class="openModal bt_equipe m-2">
             Criar Nova Equipe
         </button>
         <?php else: ?>
         <?php endif; ?>
         <?php if (session()->user->is_ceo == 1): ?>
-        <button class="openModal bt_departamento" onclick="openMenuDepartamento()">
-            Criar Nova Departamento
+        <button class="openModal bt_departamento m-2" onclick="openMenuDepartamento()">
+            Criar Novo Departamento
+        </button>
+        <button class="openModal bt_grupo m-2" onclick="openMenuGrupo()">
+            Criar Novo Grupo
         </button>
         <?php else: ?>
         <?php endif; ?>
@@ -155,16 +158,16 @@
         <?php endforeach; ?>
 
     </main>
-    <div id="modal-publicacao" style="display: none;" class="container modais-flutuantes">
+    <div id="modal-publicacao" class="modais-flutuantes">
         <form action="<?= base_url('publish/create') ?>" method="post" enctype="multipart/form-data">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"
                 onclick="closeMenuPub()"></button>
-            <div>
-                <label for="titulo">Titulo</label>
+            <div class="mb-2">
+                <label for="titulo" class="mb-2">Titulo</label>
                 <input name="titulo" type="text" style="width:100%;">
             </div>
             <div class="top-div">
-                <h2>Inserir novo post</h2>
+                <h2 class="mb-2">Inserir novo post</h2>
                 <textarea name="texto" placeholder="Insira o texto do post aqui..."></textarea>
             </div>
             <div class="bottom-div">
@@ -179,14 +182,14 @@
     </div>
 
 
-    <div class="w-75 modal-dialog modal-lg " id="criarDepartamentoModal" style="display: none;"
+    <div class="modais-flutuantes" id="criarDepartamentoModal" style="display: none;"
         aria-labelledby="criarDepartamentoModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
+                <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"
+                    onclick="closeMenuDepartamento()"></button>
                 <div class="modal-header">
-                    <h3 class="modal-title fs-5" id="criarDepartamentoModalLabel">Criar Departamento</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                        onclick="closeMenuDepartamento()"></button>
+                    <h3 class="modal-title fs-5 mb-2" id="criarDepartamentoModalLabel">Criar Departamento</h3>
                 </div>
                 <div class="modal-body">
                     <form class="form-container form-roxo" action="<?= base_url('departament/add-departament') ?>"
@@ -200,7 +203,7 @@
                             <input type="text" class="form-control" id="sigla" name="sigla" required>
                         </div>
                         <div>
-                            <label for="leader">Lider Do Departamento</label>
+                            <label for="leader" class="mb-2">Lider Do Departamento</label>
                             <select name="leader" id="leader" class="form-control" multiple>
                                 <?php foreach ($leaders as $leader): ?>
                                 <option value="<?= $leader->id_usuario?>"> <?= $leader->nome_usuario ?></option>
@@ -210,10 +213,49 @@
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer mt-2">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                         onclick="closeMenuDepartamento()">Cancelar</button>
-                    <button type="submit" class="btn md-3 botao-submit">Criar</button>
+                    <button type="submit" class="btn md-3 ms-2 btn-success botao-submit">Criar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modais-flutuantes" id="criarGrupoModal" style="display: none;" aria-labelledby="criarGrupoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"
+                    onclick="closeMenuGrupo()"></button>
+                <div class="modal-header">
+                    <h3 class="modal-title fs-5 mb-2" id="criarGrupoModalLabel">Criar Grupo</h3>
+                </div>
+                <div class="modal-body">
+                    <form class="form-container form-roxo" action="<?= base_url('grupo/add-grupo') ?>" method="POST">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="nome" name="nome" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="sigla" class="form-label">Sigla</label>
+                            <input type="text" class="form-control" id="sigla" name="sigla" required>
+                        </div>
+                        <div>
+                            <label for="leader" class="mb-2">Lider Do Grupo</label>
+                            <select name="leader" id="leader" class="form-control" multiple>
+                                <?php foreach ($leaders as $leader): ?>
+                                <option value="<?= $leader->id_usuario?>"> <?= $leader->nome_usuario ?></option>
+                                <?php endforeach; ?>
+                            </select>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer mt-2">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        onclick="closeMenuGrupo()">Cancelar</button>
+                    <button type="submit" class="btn md-3 ms-2 btn-success botao-submit">Criar</button>
                 </div>
             </div>
         </div>
@@ -230,6 +272,10 @@
         document.getElementById("criarDepartamentoModal").style.display = "none"
     }
 
+    function closeMenuGrupo() {
+        document.getElementById("criarGrupoModal").style.display = "none"
+    }
+
     function closeMenuPub() {
         document.querySelector("#modal-publicacao").style.display = "none"
     }
@@ -241,6 +287,11 @@
     function openMenuDepartamento() {
         document.getElementById("criarDepartamentoModal").style.display = "block"
     }
+
+    function openMenuGrupo() {
+        document.getElementById("criarGrupoModal").style.display = "block"
+    }
+
 
     function closeMenu() {
         document.getElementById("myMenu").style.left = "-250px";

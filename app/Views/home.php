@@ -119,6 +119,9 @@
         <button class="openModal bt_grupo m-2" onclick="openMenuGrupo()">
             Criar Novo Grupo
         </button>
+        <button class="openModal bt_pessoaEquipe m-2" onclick="openMenuPessoaEquipe()">
+            Mudar pessoa de equipe
+        </button>
         <?php else: ?>
         <?php endif; ?>
     </div>
@@ -261,6 +264,40 @@
         </div>
     </div>
 
+    <div class="modais-flutuantes" id="pessoaEquipeModal" style="display: none;"
+        aria-labelledby="pessoaEquipeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"
+                    onclick="closeMenuPessoaEquipe()"></button>
+                <div class="modal-header">
+                    <h3 class="modal-title fs-5 mb-2" id="pessoaEquipeModalLabel">Mudar pessoa de grupo</h3>
+                </div>
+                <div class="modal-body">
+                    <form class="form-container form-roxo" action="<?= base_url('grupo/change-grupo') ?>" method="POST">
+                        <div class="mb-3">
+                            <label for="nomePessoaRealocado" class="form-label">Nome da pessoa a ser realocada</label>
+                            <input type="text" class="form-control" id="nomePessoaRealocado" name="nomePessoaRealocado"
+                                required>
+                        </div>
+                        <div>
+                            <label for="grupoPessoaRealocado" class="mb-2">Grupo a ser realocado</label>
+                            <select name="grupoPessoaRealocado" id="grupoPessoaRealocado" class="form-control" multiple>
+
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer mt-2">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        onclick="closeMenuPessoaEquipe()">Cancelar</button>
+                    <button type="submit" class="btn md-3 ms-2 btn-success botao-submit">Criar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -270,6 +307,10 @@
     <script>
     function closeMenuDepartamento() {
         document.getElementById("criarDepartamentoModal").style.display = "none"
+    }
+
+    function closeMenuPessoaEquipe() {
+        document.getElementById("pessoaEquipeModal").style.display = "none"
     }
 
     function closeMenuGrupo() {
@@ -286,6 +327,10 @@
 
     function openMenuDepartamento() {
         document.getElementById("criarDepartamentoModal").style.display = "block"
+    }
+
+    function openMenuPessoaEquipe() {
+        document.getElementById("pessoaEquipeModal").style.display = "block"
     }
 
     function openMenuGrupo() {

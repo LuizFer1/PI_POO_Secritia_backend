@@ -11,11 +11,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('public/assets/css/feed.css'); ?>" />
     <link rel="stylesheet" href="<?= base_url('public/assets/css/post.css'); ?>" />
     <title>SECRITIA - Home</title>
@@ -119,6 +114,12 @@
         <button class="openModal bt_grupo m-2" onclick="openMenuGrupo()">
             Criar Novo Grupo
         </button>
+        <button class="openModal bt_pessoaEquipe m-2" onclick="openMenuPessoaEquipe()">
+            Mudar pessoa de equipe
+        </button>
+        <button class="openModal bt_grupo_departamento m-2" onclick="openMenuGrupoDepartamento()">
+            Mudar departamento de um grupo
+        </button>
         <?php else: ?>
         <?php endif; ?>
     </div>
@@ -133,18 +134,12 @@
                 <div>
                     <form id="reaction-form"
                         action=<?php echo base_url("reactions/create/") . $publicacao['id_publicacao'] ?> method="post">
-                        <span><button onclick="preventdefault()" type="submit"><svg xmlns="http://www.w3.org/2000/svg"
-                                    width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill"
-                                    viewBox="0 0 16 16">
-                                    <path
-                                        d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1" />
-                                </svg></button></span>
+                        <span><button onclick="preventdefault()" type="submit" class="btn botao-roxo"><i
+                                    class="bi bi-heart-fill"></i></button></span>
+
                     </form>
-                    <span><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-chat-right-text-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353zM3.5 3h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1m0 2.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1m0 2.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1" />
-                            </svg></a></span>
+                    <span><button onclick="openMenuComentarios()" class="btn botao-roxo"><i
+                                class="bi bi-chat-left-text-fill"></i></button></span>
                 </div>
                 <div>
                     <span><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -154,21 +149,28 @@
                             </svg></a></span>
                 </div>
             </div>
+            <div class="post-comentarios p-2">
+                <hr>
+                <!-- foreach comentarios as comentario... -->
+                <div class="comentario">
+                    <p><strong>Nome do funcionario</strong></p>
+                    <p class="fs-7 mt-1">Comentário do funcionário</p>
+                    <hr>
+                </div>
+                <!-- php endforeach -->
+            </div>
         </div>
         <?php endforeach; ?>
 
     </main>
-    <div id="modal-publicacao" class="modais-flutuantes">
-        <form action="<?= base_url('publish/create') ?>" method="post" enctype="multipart/form-data">
+
+    <div id="modal-comentarios" class="modais-flutuantes">
+        <form action="<?= base_url() ?>" method="post" enctype="multipart/form-data">
             <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"
-                onclick="closeMenuPub()"></button>
-            <div class="mb-2">
-                <label for="titulo" class="mb-2">Titulo</label>
-                <input name="titulo" type="text" style="width:100%;">
-            </div>
+                onclick="closeMenuComentarios()"></button>
             <div class="top-div">
-                <h2 class="mb-2">Inserir novo post</h2>
-                <textarea name="texto" placeholder="Insira o texto do post aqui..."></textarea>
+                <h2 class="mb-2">Inserir novo comentário</h2>
+                <textarea name="texto" placeholder="Insira o texto do comentário aqui..."></textarea>
             </div>
             <div class="bottom-div">
                 <label for="input-file"><img
@@ -261,6 +263,72 @@
         </div>
     </div>
 
+    <div class="modais-flutuantes" id="pessoaEquipeModal" style="display: none;"
+        aria-labelledby="pessoaEquipeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"
+                    onclick="closeMenuPessoaEquipe()"></button>
+                <div class="modal-header">
+                    <h3 class="modal-title fs-5 mb-2" id="pessoaEquipeModalLabel">Mudar pessoa de grupo</h3>
+                </div>
+                <div class="modal-body">
+                    <form class="form-container form-roxo" action="<?= base_url('grupo/change-grupo') ?>" method="POST">
+                        <div class="mb-3">
+                            <label for="nomePessoaRealocado" class="form-label">Nome da pessoa a ser realocada</label>
+                            <input type="text" class="form-control" id="nomePessoaRealocado" name="nomePessoaRealocado"
+                                required>
+                        </div>
+                        <div>
+                            <label for="grupoPessoaRealocado" class="mb-2">Grupo a ser realocado</label>
+                            <select name="grupoPessoaRealocado" id="grupoPessoaRealocado" class="form-control" multiple>
+                                <!-- Insira aqui o codigo php para mostrar as equipes/grupos disponiveis -->
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer mt-2">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        onclick="closeMenuPessoaEquipe()">Cancelar</button>
+                    <button type="submit" class="btn md-3 ms-2 btn-success botao-submit">Criar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modais-flutuantes" id="grupoDepartamentoModal" style="display: none;"
+        aria-labelledby="grupoDepartamentoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"
+                    onclick="closeMenuGrupoDepartamento()"></button>
+                <div class="modal-header">
+                    <h3 class="modal-title fs-5 mb-2" id="grupoDepartamentoModalLabel">Mudar grupo de departamento</h3>
+                </div>
+                <div class="modal-body">
+                    <form class="form-container form-roxo" action="<?= base_url('grupo/change-grupo') ?>" method="POST">
+                        <div class="mb-3">
+                            <label for="nomeGrupoDep" class="form-label">Nome do grupo a ser mudado</label>
+                            <input type="text" class="form-control" id="nomeGrupoDep" name="nomeGrupoDep" required>
+                        </div>
+                        <div>
+                            <label for="novoDepartamentoGrupo" class="mb-2">Novo departamento</label>
+                            <select name="novoDepartamentoGrupo" id="novoDepartamentoGrupo" class="form-control"
+                                multiple>
+                                <!-- Insira aqui o codigo php para listar os departamentos -->
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer mt-2">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        onclick="closeMenuGrupoDepartamento()">Cancelar</button>
+                    <button type="submit" class="btn md-3 ms-2 btn-success botao-submit">Criar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -270,6 +338,18 @@
     <script>
     function closeMenuDepartamento() {
         document.getElementById("criarDepartamentoModal").style.display = "none"
+    }
+
+    function closeMenuComentarios() {
+        document.getElementById("modal-comentarios").style.display = "none"
+    }
+
+    function closeMenuGrupoDepartamento() {
+        document.getElementById("grupoDepartamentoModal").style.display = "none"
+    }
+
+    function closeMenuPessoaEquipe() {
+        document.getElementById("pessoaEquipeModal").style.display = "none"
     }
 
     function closeMenuGrupo() {
@@ -286,6 +366,18 @@
 
     function openMenuDepartamento() {
         document.getElementById("criarDepartamentoModal").style.display = "block"
+    }
+
+    function openMenuComentarios() {
+        document.getElementById("modal-comentarios").style.display = "block"
+    }
+
+    function openMenuGrupoDepartamento() {
+        document.getElementById("grupoDepartamentoModal").style.display = "block"
+    }
+
+    function openMenuPessoaEquipe() {
+        document.getElementById("pessoaEquipeModal").style.display = "block"
     }
 
     function openMenuGrupo() {

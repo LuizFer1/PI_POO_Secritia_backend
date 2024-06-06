@@ -17,9 +17,6 @@
                 <h1>SECRITIA</h1>
                 <h2>REDE CORPORATIVA</h2>
             </div>
-            <?php if (session()->getFlashdata('error')): ?>
-                <div><?= var_dump(session()->getFlashdata('error')) ?></div>
-            <?php endif; ?>
             <div class="FormLogin">
                 <form action="<?= base_url('user/process') ?>" method="post">
                     <h3>LOGIN</h3>
@@ -39,6 +36,21 @@
                     <button>Entrar</button>
                     <a href="<?= base_url('user/registro') ?>">Clique aqui para fazer seu cadastro!</a>
                 </form>
+                <?php if (session()->getFlashdata('error')): ?>
+                    <div><?php 
+                        if(is_array(session()->getFlashdata('error')) || is_object(session()->getFlashdata('error'))){
+                            foreach(session()->getFlashdata('error') as $a){
+                                echo "<br>";
+                                echo $a;
+                            } 
+                        }
+                        
+                        else{
+                            echo "<br>";
+                            echo session()->getFlashdata('error');
+                        }
+                    ?></div>
+                <?php endif; ?>
             </div>
         </div>
 

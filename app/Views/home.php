@@ -11,11 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/css/feed.css'); ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/css/post.css'); ?>" />
     <title>SECRITIA - Home</title>
@@ -139,18 +135,12 @@
                 <div>
                     <form id="reaction-form"
                         action=<?php echo base_url("reactions/create/") . $publicacao['id_publicacao'] ?> method="post">
-                        <span><button onclick="preventdefault()" type="submit"><svg xmlns="http://www.w3.org/2000/svg"
-                                    width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill"
-                                    viewBox="0 0 16 16">
-                                    <path
-                                        d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1" />
-                                </svg></button></span>
+                        <span><button onclick="preventdefault()" type="submit" class="btn botao-roxo"><i
+                                    class="bi bi-heart-fill"></i></button></span>
+
                     </form>
-                    <span><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-chat-right-text-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353zM3.5 3h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1m0 2.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1m0 2.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1" />
-                            </svg></a></span>
+                    <span><button onclick="openMenuComentarios()" class="btn botao-roxo"><i
+                                class="bi bi-chat-left-text-fill"></i></button></span>
                 </div>
                 <div>
                     <span><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -160,21 +150,28 @@
                             </svg></a></span>
                 </div>
             </div>
+            <div class="post-comentarios p-2">
+                <hr>
+                <!-- foreach comentarios as comentario... -->
+                <div class="comentario">
+                    <p><strong>Nome do funcionario</strong></p>
+                    <p class="fs-7 mt-1">Comentário do funcionário</p>
+                    <hr>
+                </div>
+                <!-- php endforeach -->
+            </div>
         </div>
         <?php endforeach; ?>
 
     </main>
-    <div id="modal-publicacao" class="modais-flutuantes">
-        <form action="<?= base_url('publish/create') ?>" method="post" enctype="multipart/form-data">
+
+    <div id="modal-comentarios" class="modais-flutuantes">
+        <form action="<?= base_url() ?>" method="post" enctype="multipart/form-data">
             <button type="button" class="btn-close mb-2" data-bs-dismiss="modal" aria-label="Close"
-                onclick="closeMenuPub()"></button>
-            <div class="mb-2">
-                <label for="titulo" class="mb-2">Titulo</label>
-                <input name="titulo" type="text" style="width:100%;">
-            </div>
+                onclick="closeMenuComentarios()"></button>
             <div class="top-div">
-                <h2 class="mb-2">Inserir novo post</h2>
-                <textarea name="texto" placeholder="Insira o texto do post aqui..."></textarea>
+                <h2 class="mb-2">Inserir novo comentário</h2>
+                <textarea name="texto" placeholder="Insira o texto do comentário aqui..."></textarea>
             </div>
             <div class="bottom-div">
                 <label for="input-file"><img
@@ -344,6 +341,10 @@
         document.getElementById("criarDepartamentoModal").style.display = "none"
     }
 
+    function closeMenuComentarios() {
+        document.getElementById("modal-comentarios").style.display = "none"
+    }
+
     function closeMenuGrupoDepartamento() {
         document.getElementById("grupoDepartamentoModal").style.display = "none"
     }
@@ -366,6 +367,10 @@
 
     function openMenuDepartamento() {
         document.getElementById("criarDepartamentoModal").style.display = "block"
+    }
+
+    function openMenuComentarios() {
+        document.getElementById("modal-comentarios").style.display = "block"
     }
 
     function openMenuGrupoDepartamento() {

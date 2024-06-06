@@ -2,8 +2,6 @@
 
 namespace Config;
 
-
-use App\Filters\TokenFilter;
 use App\Filters\Login;
 use CodeIgniter\Config\Filters as BaseFilters;
 use CodeIgniter\Filters\Cors;
@@ -15,7 +13,6 @@ use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\PageCache;
 use CodeIgniter\Filters\PerformanceMetrics;
 use CodeIgniter\Filters\SecureHeaders;
-
 
 class Filters extends BaseFilters
 {
@@ -38,10 +35,7 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
-        'login' => Login::class,
-        'token' => TokenFilter::class,
-        'isAdmin' => isAdmin::class,
-        'isCeo' => isCeo::class,
+        'login' => Login::class
     ];
 
     /**

@@ -14,12 +14,13 @@ $routes->get(
     ]
 );
 
-$routes->get(
+
+
+$routes->group('user', function (RouteCollection $routes) {
+    $routes->get(
         'perfil',
         'ProfileController::index',
     );
-
-$routes->group('user', function (RouteCollection $routes) {
     $routes->get(
         'login',
         'Login::index',
@@ -40,7 +41,7 @@ $routes->group('user', function (RouteCollection $routes) {
     $routes->post(
         'create-lider',
         'UsuarioController::createLeader',
-        ['filter' => 'isCeo']
+        ['filter' => 'isAdmin']
     );
     $routes->post(
         'create-ceo',
@@ -51,7 +52,6 @@ $routes->group('user', function (RouteCollection $routes) {
         'logout',
         'Login::logout',
     );
-    
 });
 
 $routes->group('publish', function (RouteCollection $routes) {
@@ -83,6 +83,10 @@ $routes->group('reactions', function (RouteCollection $routes) {
         'create/(:any)',
         'ReacaoController::createReacao/$1'
     );
+    $routes->get(
+        'delete/(:any)',
+        'ReacaoController::deleteRecord/$1'
+    );
 });
 
 $routes->get('grupos', 'GrupoController::list');
@@ -103,11 +107,6 @@ $routes->group('departament', function (RouteCollection $routes) {
     );
 });
 
-    $routes->get(
-        'calendario',
-        'CalendarioController::index'
-    );
-    $routes->post(
-        'calendario',
-        'CalendarioController::adicionarEvento'
-    );
+
+
+

@@ -4,14 +4,14 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ComentarioModel extends Model
+class PostModel extends Model
 {
-    protected $table            = 'Comentario';
-    protected $primaryKey       = 'id_comentario';
+    protected $table            = 'Publicacao';
+    protected $primaryKey       = 'id_publicacao';
     protected $returnType       = 'array';
-    protected $useSoftDeletes   = true;
+    protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_publicacao', 'corpo', 'id_usuario', 'created_at'];
+    protected $allowedFields    = ['id_usuario', 'titulo', 'descricao', 'conteudo'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -46,13 +46,9 @@ class ComentarioModel extends Model
     public function list(){
         return $this->findAll();
     }
-    public function getComentarioByIdPublicacao($id_publicacao) {
-        return $this->where('id_publicacao', $id_publicacao)->findAll();
-    }
-    
     public function create(array $attributes){
         return $this->insert($attributes);
     }
+    
 }
-
 ?>

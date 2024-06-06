@@ -26,16 +26,12 @@ class PublicacaoController extends ResourceController
         helper(['form', 'url']);
         $response =[];
         try{
-            
-            if($image = $this->request->getFile('input-file')){
-                $imageContent = file_get_contents($image->getTempName());
-                $base64Image = base64_encode($imageContent);
-            } else {
-                $base64Image = null;
-            }
+            $image = $this->request->getFile('input-file');
             // Lê o conteúdo da imagem
+            $imageContent = file_get_contents($image->getTempName());
 
             // Converte para base64
+            $base64Image = base64_encode($imageContent);
             $newPublicacao = [
                 'id_usuario'=> session()->id_usuario,
                 'titulo'=> $this->request->getPost('titulo'),

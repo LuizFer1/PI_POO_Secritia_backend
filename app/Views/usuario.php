@@ -219,7 +219,6 @@
     <!-- Substitua esse header à vontade -->
     <div class="d-flex flex-column w-100">
         <div class="w-100">
-
             <div class="d-flex flex-column align-items-center fundo-perfil">
                 <div class="icone-editar">
                     <i class="bi bi-pencil-fill"></i>
@@ -228,8 +227,8 @@
                     <img src="https://static.vecteezy.com/ti/fotos-gratis/t2/1223835-nascer-da-lua-no-fundo-de-uma-arvore-solitaria-gratis-foto.jpg"
                         alt="" class="rounded-circle perfil">
                 </figure>
-                <h2>Nome completo</h2>
-                <p>Cargo</p>
+                <h2><?= $usuario['nome_usuario'] ?></h2>
+                <p><?= $usuario['cargo'] ?></p>
             </div>
         </div>
         <div class="bottom-perfil">
@@ -238,19 +237,18 @@
                 <div class="form-group">
                     <div class="mb-2">
                         <label for="nome" class="form-label">Nome completo</label>
-                        <input type="text" class="form-control" id="nome" name="nome">
+                        <input type="text" class="form-control" id="nome" name="nome"
+                            value="<?= $usuario['nome_usuario']  ?>">
                     </div>
                     <div class="mb-2">
                         <label for="email" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="email" name="email">
-                    </div>
-                    <div class="mb-2">
-                        <label for="biografia" class="form-label">Biografia</label>
-                        <input type="text" class="form-control" id="biografia" name="biografia">
+                        <input type="email" class="form-control" id="email" name="email"
+                            value="<?= $usuario['email'] ?>">
                     </div>
                     <div class="mb-2">
                         <label for="cargo" class="form-label">Cargo</label>
-                        <input type="text" class="form-control" id="cargo" name="cargo">
+                        <input type="text" class="form-control" id="cargo" name="cargo"
+                            value="<?= $usuario['cargo'] ?>">
                     </div>
                 </div>
                 <div class="d-flex caixa-botao">

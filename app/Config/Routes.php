@@ -14,7 +14,13 @@ $routes->get(
     ]
 );
 
+
+
 $routes->group('user', function (RouteCollection $routes) {
+    $routes->get(
+        'perfil',
+        'ProfileController::index',
+    );
     $routes->get(
         'login',
         'Login::index',
@@ -41,6 +47,10 @@ $routes->group('user', function (RouteCollection $routes) {
         'create-ceo',
         'UsuarioController::createCeo',
         ['filter' => 'isAdmin']
+    );
+    $routes->get(
+        'logout',
+        'Login::logout',
     );
 });
 
@@ -70,8 +80,12 @@ $routes->group('reactions', function (RouteCollection $routes) {
         'ReacaoController::list'
     );
     $routes->post(
-        'reacoes',
-        'ReacaoController::createReacao'
+        'create/(:any)',
+        'ReacaoController::createReacao/$1'
+    );
+    $routes->get(
+        'delete/(:any)',
+        'ReacaoController::deleteRecord/$1'
     );
 });
 
